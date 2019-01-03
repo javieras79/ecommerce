@@ -1,5 +1,5 @@
 <?php
-include("conexionBBDD.php");
+include("conectBBDD.php");
 
 $usr=$_POST["usuario"];
 $psw=$_POST["inputPassword"];
@@ -7,10 +7,10 @@ $psw=$_POST["inputPassword"];
 $con=conectar_bd();
 $sql= $con->prepare("Select * from usuarios where nick='" . $usr ."' and password='". $psw ."'");
 $sql->execute();
-$res = array();
+
     while($res = $sql->fetch()){    
-        $usuario = $res[1];
-        $id_rol = $res[12];
+        $usuario = $res["nick"];
+        $id_rol = $res["id_rol"];
     }
 if ($usuario){    
         //El usuario existe

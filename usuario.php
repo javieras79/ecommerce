@@ -1,5 +1,5 @@
 <?php
-include("conexionBBDD.php");
+include("conectBBDD.php");
 $usr=$_POST["nick"];
 $psw=$_POST["password"];
 $email=$_POST["email"];

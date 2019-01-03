@@ -1,2 +1,3 @@
-CREATE DATABASE ecommerce;
+CREATE DATABASE ecommerce2;
+USE ecommerce2;
 

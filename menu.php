@@ -23,7 +23,7 @@ Menú de navegación
                                     echo'<a href="#" data-toggle="dropdown" class="dropdown-toggle">Mantenimiento <b class="caret"></b></a>';
                                     echo'<ul class="dropdown-menu">';
                                     echo'<li><a href="gArticulos.php">Articulos</a></li>';
-                                    echo'<li><a href="gCategorias.php">Categorias</a></li>';
+                                    echo'<li><a href="listCategories.php">Categorias</a></li>';
                                     echo'<li><a href="gMarcas.php">Marcas</a></li>';
                                     echo'<li><a href="gPedidos.php">Pedidos Clientes</a></li>';
                                     echo'<li class="divider"></li>';
