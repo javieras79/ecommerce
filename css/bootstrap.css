@@ -2242,7 +2242,7 @@ table th[class*="span"],
 }
 
 .table tbody tr.success > td {
-  background-color: #dff0d8;
+  background-color: #c69fa9;
 }
 
 .table tbody tr.error > td {
