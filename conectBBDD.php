@@ -3,7 +3,7 @@ include_once("appSettings.php");
     //Método para abrir una conexión a la base de datos
     function conectar_bd() {
         
-        $con = new PDO('mysql:host=localhost:3306;dbname=tiendavirtual','usr_shp','JaMe47l');
+        $con = new PDO('mysql:host=localhost:3306;dbname=onlineshop','usr_shp','JaMe47l');
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         /*

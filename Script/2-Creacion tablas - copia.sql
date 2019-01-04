@@ -41,7 +41,7 @@ create table articulos (
 	precio decimal (8,2),
 	iva decimal (2,2),
 	baja bool not null default 0,
-	carrousel bool not null default 0,
+	tablon bool not null default 0,
 	usr_modif varchar(45),
 	fecha_modif date not null,
 	constraint pk_articulo primary key (id_articulo),

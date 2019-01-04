@@ -10,7 +10,8 @@ Seccion de contenido donde se incluye las categorias desde php
 include("categorias.php")
 ?>
 <?php 
-include("cuerpo.php")?>
+include("cuerpo.php")
+?>
 <?php
 
     include("pie.php");
