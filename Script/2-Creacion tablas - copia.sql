@@ -19,9 +19,11 @@ create table categorias (
 	
 create table subcategorias (
 	id_subcategoria int not null auto_increment,
+    id_categoria int,
 	nombre_subcategoria varchar(50),
-	baja bool not null default 0,
-	constraint pk_idsubcategoria primary key (id_subcategoria)
+	baja bool not null default 0,    
+	constraint pk_idsubcategoria primary key (id_subcategoria),
+    constraint fk_idcategoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
 	) engine = innodb;
 	
 create table marcas (

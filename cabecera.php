@@ -6,8 +6,13 @@
     <meta name="description" content="Tienda online de Airsoft">
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
+    
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="js/validaciones.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+    <script src="js/main.js"></script>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
