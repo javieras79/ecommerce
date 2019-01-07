@@ -17,7 +17,7 @@ include("categorias.php");
         echo "<div class='thumbnail'>";
         echo "<a href='product_details.html' class='overlay'></a>";
         echo '<a class="zoomTool" href="showcategories.php?id_cat='.$_GET['idcat'].'&id_scat='.$_GET['idscat'].'" title="volver"><span class="icon-search"></span> Volver</a>';        
-        echo "<img src='./img/articulos/".$_GET["idart"].".jpg.' alt=''></a>";
+        echo "<img src='./img/articulos/".$_GET["idart"].".jpg' alt=''></a>";
         echo "</div>";
     }else{
     echo "hola";
