@@ -5,7 +5,7 @@ include_once("conectBBDD.php");
 function articuloslista($cat,$scat){
     $con = conectar_bd();
     //$sql = $con->prepare('Select * from articulos where id_categoria='.$cat.' and baja=0 limit 0,5;'); 
-    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,m.nombre_marca,c.nombre_categoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
+    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
                             INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' limit 0,6;');
     $sql->execute();
@@ -48,14 +48,15 @@ function articuloslista($cat,$scat){
     }
     //echo "<h3>".$rst["nombre_subcategoria"]."</h3>";    
     while($rst = $sql->fetch()){
+        
          
         echo "<div class='row-fluid'>";
         echo "<ul class='thumbnails'>";
         echo "<li class='span4'>";
         echo "<div class='thumbnail'>";
         echo "<a href='product_details.html' class='overlay'></a>";
-        echo "<a class='zoomTool' href='product_details.html' title='add to cart'><span class='icon-search'></span> QUICK VIEW</a>";
-        echo '<a href="articuloDetalle.php?idart='.$rst['id_articulo'].'">';    
+        echo '<a class="zoomTool" href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>';
+        echo '<a href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'">';
         echo "<img src='./img/articulos/".$rst["id_articulo"].".jpg.' alt=''></a>";
         echo "<div class='caption cntr'>";
         echo "<p>".$rst['descripcion']."</p>";

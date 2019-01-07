@@ -1,7 +1,7 @@
 <?php     
-    include_once("cabecera.php");
-    include_once("menu.php");
-    include_once("conectBBDD.php");
+include_once("cabecera.php");
+include_once("menu.php");
+include_once("conectBBDD.php");
 ?>
 
 <div id="sidebar" class="span3">
