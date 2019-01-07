@@ -4,7 +4,7 @@ include_once("conectBBDD.php");
 if (isset($_GET["editar"])) {
     $id=$_GET["id"];
     $nombre_categoria=$_POST["nombre_categoria"];
-    $baja=$_POST["baja"];
+    $activo=$_POST["activo"];
 }
 
 function listCategories(){
@@ -25,7 +25,7 @@ echo '<div class="span12">';
                         echo "Nombre Categoria";
                     echo "</td>";
                     echo "<td>";
-                        echo "Baja";
+                        echo "Activado";
                     echo "</td>";  
                     echo "<td>";
                         echo "Edita";
@@ -51,8 +51,8 @@ while($datos = $sql->fetch()){
     echo "</td>";
     echo "<td>";
         echo '<div style="text-align: left">';
-            $baja=$datos["baja"];
-            if ($baja==0){
+            $activo=$datos["activo"];
+            if ($activo==0){
                 $chk="";
             }else{
                 $chk="checked";
@@ -61,7 +61,7 @@ while($datos = $sql->fetch()){
         echo '</div>';
     echo "</td>";
     echo "<td>";        
-        echo '<a href="addCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&baja='.$baja.'">';
+        echo '<a href="addCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&activo='.$activo.'">';
         echo "Editar</a>";
     echo "</td>";
     echo "<td>";

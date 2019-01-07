@@ -11,7 +11,7 @@
     $con = conectar_bd();
     //$sql = $con->prepare('Select * from categorias;');
     $sql = $con->prepare('Select a.nombre_categoria,a.id_categoria,s.nombre_subcategoria,s.id_subcategoria
-                          from categorias a INNER JOIN subcategorias s ON a.id_categoria =s.id_categoria;');
+                          from categorias a INNER JOIN subcategorias s ON a.id_categoria = s.id_categoria order by a.id_categoria;');
     $sql->execute();
     $controla_duplicados=1;
     $controlUL=true;
@@ -29,7 +29,7 @@
                 echo "<ul>";                
                 $controlUL=false;
             }
-               echo '<li class="has-sub"><a href="showcategories.php?id_scat='.$id_scat.'&id_cat='.$id_cat.'">';
+               echo '<li><a href="showcategories.php?id_cat='.$id_cat.'&id_scat='.$id_scat.'">';
                echo $nombre_subcategoria."</a></li>";
         }else{
                $controlUL=true;
@@ -38,7 +38,7 @@
             echo '<li class="active has-sub"><a href="showcategories.php?id_cat='.$id_cat.'">';
             echo $nombre_categoria."</a>";
                echo "<ul>";
-               echo '<li class="has-sub"><a href="showcategories.php?id_scat='.$id_scat.'&id_cat='.$id_cat.'">';
+               echo '<li><a href="showcategories.php?id_cat='.$id_cat.'&id_scat='.$id_scat.'">';
                echo $nombre_subcategoria."</a></li>";
             $controla_duplicados = $id_cat;
         }        

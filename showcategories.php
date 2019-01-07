@@ -14,9 +14,11 @@ include("categorias.php");
 <div class="span9">
 <div class="well well-small">
 <?php
-    if(isset($_GET['id_cat'])){
+    if(isset($_GET['id_cat']) && isset($_GET['id_scat'])){
+        
         $cat=$_GET['id_cat'];
-        articulosLista($cat);
+        $scat=$_GET['id_scat'];
+        articulosLista($cat,$scat);
     }
 ?>
 </div>

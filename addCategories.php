@@ -11,7 +11,7 @@ Seccion de contenido donde se incluye las categorias desde php
             if(isset($_GET["editar"])){
                 $id=$_GET["id"];
                 $nombre_categoria=$_GET["categoria"];
-                $baja=$_GET["baja"];
+                $activo=$_GET["activo"];
                 echo '<form class="form-horizontal" action="toolsCategories.php?editar=SI&id='.$id.'" method="POST" onsubmit="return validarArticulos();" enctype="multipart/form-data">';
             }else{
                 echo '<form class="form-horizontal" action="toolsCategories.php" method="POST" onsubmit="return validarArticulos();" enctype="multipart/form-data">';
@@ -34,10 +34,10 @@ Seccion de contenido donde se incluye las categorias desde php
     	<label class="control-label" for="baja">Estado Categoria <sup>*</sup></label>
     		<div class="controls">
     		<?php 
-    		  if($baja=0){
-    		    echo "<input type='checkbox' id='baja' name='baja'>";
+    		  if($activo=0){
+    		    echo "<input type='checkbox' id='activo' name='activo'>";
     		  }else{
-    		    echo "<input type='checkbox' id='baja' name='baja' checked>";
+    		    echo "<input type='checkbox' id='activo' name='activo' checked>";
     		  }
     		 ?>    		                   
    			</div>

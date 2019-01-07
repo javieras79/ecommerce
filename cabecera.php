@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
+    
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Airsoft Javier Aznar</title>
     <meta name="description" content="Tienda online de Airsoft">
     <link href="css/bootstrap.css" rel="stylesheet"/>

@@ -6188,9 +6188,15 @@ a.badge:focus {
   box-sizing: border-box;
 }
 #cssmenu {
-  width: 200px;
+  width: 100%;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    color: #333333;
+    /*
   font-family: Helvetica, Arial, sans-serif;
   color: #ffffff;
+    */
 }
 #cssmenu ul ul {
   display: none;
@@ -6200,42 +6206,53 @@ a.badge:focus {
 }
 #cssmenu > ul > li > a {
   padding: 15px 20px;
-  border-left: 1px solid #1682ba;
+    
+  border-left: 1px solid #d4d4d4;
+  border-right: 1px solid #d4d4d4;
+  border-top: 1px solid #d4d4d4;
+ /* borders originales  border-left: 1px solid #1682ba;
   border-right: 1px solid #1682ba;
-  border-top: 1px solid #1682ba;
+  border-top: 1px solid #1682ba;*/
   cursor: pointer;
   z-index: 2;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   text-decoration: none;
   color: #ffffff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
-  background: #36aae7;
+  /*background: #36aae7;
   background: -webkit-linear-gradient(#36aae7, #1fa0e4);
   background: -moz-linear-gradient(#36aae7, #1fa0e4);
   background: -o-linear-gradient(#36aae7, #1fa0e4);
   background: -ms-linear-gradient(#36aae7, #1fa0e4);
   background: linear-gradient(#36aae7, #1fa0e4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    */
 }
 #cssmenu > ul > li > a:hover,
 #cssmenu > ul > li.active > a,
 #cssmenu > ul > li.open > a {
-  color: #eeeeee;
-  background: #1fa0e4;
+  color: #555555;
+  background-color: #e5e5e5;
+  /*background: #fafafa;  
   background: -webkit-linear-gradient(#1fa0e4, #1992d1);
   background: -moz-linear-gradient(#1fa0e4, #1992d1);
   background: -o-linear-gradient(#1fa0e4, #1992d1);
   background: -ms-linear-gradient(#1fa0e4, #1992d1);
-  background: linear-gradient(#1fa0e4, #1992d1);
+    */
+  background-image: -webkit-linear-gradient(to bottom, #ffffff, #f2f2f2);
+  background-image: -moz-linear-gradient(to bottom, #ffffff, #f2f2f2);
+  background-image: -o-linear-gradient(to bottom, #ffffff, #f2f2f2);
+  background-image: -ms-linear-gradient(to bottom, #ffffff, #f2f2f2);
+  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
 }
 #cssmenu > ul > li.open > a {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid #1682ba;
+  border-bottom: 1px solid #d4d4d4;
 }
 #cssmenu > ul > li:last-child > a,
 #cssmenu > ul > li.last > a {
-  border-bottom: 1px solid #1682ba;
+  border-bottom: 1px solid #d4d4d4;
 }
 .holder {
   width: 0;
@@ -6271,22 +6288,24 @@ a.badge:focus {
 }
 .holder::before {
   top: 18px;
-  border-top: 2px solid;
-  border-left: 2px solid;
+  border-top: 1px solid;
+  border-left: 1px solid;
   border-top-color: inherit;
   border-left-color: inherit;
 }
 #cssmenu ul ul li a {
   cursor: pointer;
+    /*
   border-bottom: 1px solid #32373e;
   border-left: 1px solid #32373e;
   border-right: 1px solid #32373e;
+    */
   padding: 10px 20px;
   z-index: 1;
   text-decoration: none;
   font-size: 13px;
-  color: #eeeeee;
-  background: #49505a;
+  color: #555555;
+  background: #ddd;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 #cssmenu ul ul li:hover > a,
