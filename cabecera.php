@@ -46,7 +46,7 @@ Cabecera común a todas las paginas
             </div>
             <div class="span8 alignR">
                 <p><br> <strong> Contacto: (24/7) :  666 222 444 </strong><br><br></p>
-                <p style="color: darkred; font-size: 20px"><br> <strong> Web de PRUEBAS </strong><br><br></p>
+                <p style="color: darkred; font-size: 20px"><br> <strong> Tienda On-line de Airsoft</strong><br><br></p>
             </div>
         </div>
     </header>

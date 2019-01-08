@@ -1,9 +1,8 @@
 <?php
-include("cabecera.php");
-include("menu.php");
-include("principal.php");
+session_start();
+include_once("cabecera.php");
+include_once("menu.php");
 include_once("toolsCart.php");
-
 ?>
 
 <!--
@@ -15,13 +14,13 @@ contenido de la página
 
             <?php 
                   loadCart();
+                  showCart();
             ?>
 </div>
 
 </div>
 
 <?php
-
 include("pie.php");
 ?>
 
