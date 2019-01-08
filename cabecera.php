@@ -1,3 +1,6 @@
+<?php 
+include_once("toolsCart.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,29 +23,13 @@
     <link rel="shortcut icon" href="ico/favicon.ico">
 </head>
 <body>
-<?php ?>
+
 <!-- 
 	Upper Header Section 
 -->
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="topNav">
-		<div class="container">
-			<div class="alignR">
-				<div class="pull-left socialNw">
-					<a href="#"><span class="icon-twitter"></span></a>
-					<a href="#"><span class="icon-facebook"></span></a>
-					<a href="#"><span class="icon-youtube"></span></a>
-					<a href="#"><span class="icon-tumblr"></span></a>
-				</div>
-				<a href="index.php"> <span class="icon-home"></span> Home</a> 
-				<a href="#"><span class="icon-user"></span> My Account</a> 
-				<a href="register.html"><span class="icon-edit"></span> Free Register </a> 
-				<a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
-				<a href="cart.php"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
-			</div>
-		</div>
-	</div>
-</div>
+<?php 
+loadCart();
+?>	
 <!--
 Cabecera común a todas las paginas
 -->
