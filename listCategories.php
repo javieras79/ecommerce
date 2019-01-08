@@ -15,7 +15,7 @@ Seccion de contenido donde se incluye las categorias desde php
                 echo '<form class="form-horizontal" action="gestionCategorias.php" method="POST" onsubmit="return validarArticulos();" enctype="multipart/form-data">';
                 $id=0;
             }
-            listCategories();
+            mtoCategories();
         ?>
 <?php
     include("pie.php");

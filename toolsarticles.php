@@ -57,7 +57,7 @@ function articuloslista($cat,$scat){
         echo "<a href='product_details.html' class='overlay'></a>";
         echo '<a class="zoomTool" href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>';
         echo '<a href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'">';
-        echo "<img src='./img/articulos/".$rst["id_articulo"].".jpg' alt=''></a>";
+        echo "<img src='img/articulos/".$rst["id_articulo"].".jpg' alt=''></a>";
         echo "<div class='caption cntr'>";
         echo "<p>".$rst['descripcion']."</p>";
         echo "<p>".$rst['nombre_articulo']."</p>";

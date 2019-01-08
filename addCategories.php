@@ -34,7 +34,7 @@ Seccion de contenido donde se incluye las categorias desde php
     	<label class="control-label" for="baja">Estado Categoria <sup>*</sup></label>
     		<div class="controls">
     		<?php 
-    		  if($activo=0){
+    		  if($baja=0){
     		    echo "<input type='checkbox' id='activo' name='activo'>";
     		  }else{
     		    echo "<input type='checkbox' id='activo' name='activo' checked>";
