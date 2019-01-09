@@ -10,22 +10,56 @@ drop table if exists pedidoDetalle;
 drop table if exists subcategorias;
 drop table if exists estadoPedido;
 
+create table categorias (
+	id_categoria int not null auto_increment,
+	nombre_categoria varchar(50),
+	baja bool not null default 0,
+	constraint pk_idcategoria primary key (id_categoria)
+	) engine = innodb;
+	
+create table subcategorias (
+	id_subcategoria int not null auto_increment,
+    id_categoria int,
+	nombre_subcategoria varchar(50),
+	baja bool not null default 0,    
+	constraint pk_idsubcategoria primary key (id_subcategoria),
+    constraint fk_idcategoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
+	) engine = innodb;
+	
+create table marcas (
+	id_marca int not null auto_increment,
+	nombre_marca varchar(50),
+	baja bool not null default 0,
+	constraint pk_idmarca primary key (id_marca)
+	) engine = innodb;	
 
 create table articulos (
 	id_articulo int not null auto_increment,
 	id_categoria int,
 	id_subcategoria int,
 	id_marca int,
-	nombre_articulo varchar(170) not null,
-	descripcion varchar(250) not null,
-	precio decimal (7,2),
+	nombre_articulo varchar(130) not null,
+	descripcion varchar(220) not null,
+	precio decimal (8,2),
 	iva decimal (2,2),
 	baja bool not null default 0,
-	carrousel bool not null default 0,
-	usr_modif varchar(50),
+	tablon bool not null default 0,
+	usr_modif varchar(45),
 	fecha_modif date not null,
-	primary key (id_articulo)
+	constraint pk_articulo primary key (id_articulo),
+    constraint fk_id_categoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria),
+    constraint fk_id_subcategoria FOREIGN KEY (id_subcategoria) REFERENCES subcategorias (id_subcategoria),
+    constraint fk_id_marca FOREIGN KEY (id_marca) REFERENCES marcas (id_marca)
 	) engine = innodb;
+
+
+create table roles (
+	id_rol int not null auto_increment,
+	rol varchar(50),
+	baja bool not null default 0,
+	constraint pk_idrol primary key (id_rol)
+	) engine = innodb;
+	
 
 create table usuarios (
 	id_usuario int not null auto_increment,
@@ -41,8 +75,17 @@ create table usuarios (
 	rellenado bool not null default 0,
 	baja bool not null default 0,
 	id_rol int,	
-    primary key (id_usuario)
+    constraint pk_usuario primary key (id_usuario),
+    constraint fk_id_rol FOREIGN KEY (id_rol) REFERENCES roles (id_rol)
 	) engine = innodb;
+
+create table estadoPedido (
+	id_estado int not null auto_increment,
+	estado varchar(50),
+	baja bool not null default 0,
+	primary key (id_estado)
+	) engine = innodb;
+
 
 create table pedido (
 	id_pedido int not null auto_increment,
@@ -51,10 +94,13 @@ create table pedido (
 	id_usuario int,
 	id_estado int,
 	baja bool not null default 0,
-	primary key (id_pedido)
+	constraint pk_idpedido primary key (id_pedido),
+    constraint fk_idusuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
+    constraint fk_idestado FOREIGN KEY (id_estado) REFERENCES estadoPedido (id_estado)
 	) engine = innodb;
 
-create table pedidoDetalle (
+
+create table detallePedido (
 	
 	id_detalle int not null auto_increment,
 	id_pedido int,
@@ -63,8 +109,11 @@ create table pedidoDetalle (
 	iva decimal (2,2),
 	cantidad int,
 	baja bool not null default 0,
-	primary key (id_detalle)
+	constraint pk_iddetalle primary key (id_detalle),
+    constraint fk_idpedido FOREIGN KEY (id_pedido) REFERENCES pedido (id_pedido),
+    constraint fk_idarticulo FOREIGN KEY (id_articulo) REFERENCES articulos (id_articulo)
 	) engine = innodb;
+
 	
 create table tiendas (
 	id_tienda int,
@@ -78,43 +127,8 @@ create table tiendas (
 	email varchar(30),
 	baja bool not null default 0,
 	primary key (id_tienda)
-	
 	)	engine = innodb;
  
-create table categorias (
-	id_categoria int not null auto_increment,
-	nombre_categoria varchar(50),
-	baja bool not null default 0,
-	primary key (id_categoria)
-	) engine = innodb;
-	
-create table subcategorias (
-	id_subcategoria int not null auto_increment,
-	nombre_subcategoria varchar(50),
-	baja bool not null default 0,
-	primary key (id_subcategoria)
-	) engine = innodb;
-	
-create table marcas (
-	id_marca int not null auto_increment,
-	nombre_marca varchar(50),
-	baja bool not null default 0,
-	primary key (id_marca)
-	) engine = innodb;
-	
-create table roles (
-	id_rol int not null auto_increment,
-	rol varchar(50),
-	baja bool not null default 0,
-	primary key (id_rol)
-	) engine = innodb;
-	
-create table estadoPedido (
-	id_estado int not null auto_increment,
-	estado varchar(50),
-	baja bool not null default 0,
-	primary key (id_estado)
-	) engine = innodb;
 
 
 
