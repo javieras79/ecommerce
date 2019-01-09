@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once("cabecera.php");
 include_once("menu.php");
 include_once("toolsCart.php");

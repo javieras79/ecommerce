@@ -90,7 +90,7 @@ function mtoCategories(){
         }else{
             $chk="checked";
         }
-        echo '<input type="checkbox" name="checkbox[]"'. $chk .' disabled>';
+        echo '<center><input type="checkbox" name="checkbox[]"'. $chk .' disabled></center>';
         echo '</div>';
         echo "</td>";
         echo "<td>";
