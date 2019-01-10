@@ -10,7 +10,8 @@ function articuloslista($cat,$scat){
     $sql->execute();  
     $reg=$sql->rowCount();
     $count=0;
-  
+    $count2=3;
+
     if($reg==0){
         echo "<div class='row-fluid'>";
         echo "<ul class='thumbnails'>";   
@@ -20,11 +21,12 @@ function articuloslista($cat,$scat){
     }
     
     while($rst = $sql->fetch()){
-        if($count==3){
+        if($count==$count2){
             echo "</ul>";
             echo "</div>";
             echo "<div class='row-fluid'>";
             echo "<ul class='thumbnails'>";
+            $count2=$count2+3;
         }
         echo "<li class='span4'>";
         echo "<div class='thumbnail'>";
@@ -41,11 +43,7 @@ function articuloslista($cat,$scat){
         echo "</div>";
         echo "</div>";
         echo "</li>";
-        
-        if($count==6){
-          echo "</ul>";
-          echo "</div>";
-        }
+
         $count++;
     }                 
 }
