@@ -36,7 +36,7 @@ if(isset($_GET['edit'])){
     $tlf=$_POST["telefono"];
     $con=conectar_bd();
     $sql=$con->prepare("update usuarios set nick='".$nick."',password='".$pwd."',nombre='".$nombre."',apellidos='".$apellidos."',
-                        email='".$email."',direccion='".$direccion."',provincia='".$provincia."',poblacion='".$poblacion."',telefono='".$tlf."'");      
+                        email='".$email."',direccion='".$direccion."',provincia='".$provincia."',poblacion='".$poblacion."',telefono='".$tlf."' where nick='".$nick."'");      
     $sql->execute();                        
     header("location:index.php");
 }
