@@ -2,8 +2,8 @@
 include_once("conectBBDD.php");
 
 //muestra en el cuerpo la lista de articulos de la categoria seleccionada
-function articuloslista($cat,$scat){
-    $desplazamiento=3;
+function articuloslista($cat,$scat,$desplazamiento){
+    
     $con = conectar_bd();    
     $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
@@ -12,6 +12,7 @@ function articuloslista($cat,$scat){
     $reg=$sql->rowCount();
     $count=0;
     $count2=3;
+    
 
     if($reg==0){
         echo "<div class='row-fluid'>";
@@ -47,6 +48,5 @@ function articuloslista($cat,$scat){
 
         $count++;
     }
-    return $desplazamiento;
 }
 ?>
