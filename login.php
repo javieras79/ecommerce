@@ -17,7 +17,7 @@ if (isset($_SESSION["logon"])){
         echo '<div class="dropdown-menu">';
         echo '<form class="form-horizontal loginUsr" >';
         echo '<div class="control-group">';
-        echo '<li class="pull-right"><a href="profile.php">Mi Cuenta</a></li>';
+        echo '<li class="pull-right"><a href="registro.php?cuenta=SI">Mi Cuenta</a></li>';
         echo '</div>';
         echo '<div class="control-group">';
         echo '<li class="pull-right"><a class="shopBtn btn-block" href="logout.php">LogOUT</a></li>';

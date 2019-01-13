@@ -1,5 +1,5 @@
 <?php 
-include("conectBBDD.php");
+include_once("conectBBDD.php");
 
 $usr=$_POST["nick"];
 
@@ -47,7 +47,13 @@ function saveUser($usr){
     session_start();
     $_SESSION["logon"]= "SI";
     $_SESSION["usr"]= $usr;
+    
+    $sql=$con->prepare("select id_rol from usuarios where nick='".$usr."'");
+    $sql->execute();
+    $id_rol=$sql->fetchColumn(0);
+    $_SESSION["rol"]= $id_rol;    
     header("location:index.php");
 
 }
+
 ?>

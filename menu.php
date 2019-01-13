@@ -37,7 +37,7 @@ Menú de navegación
                                     echo'<li class="dropdown">';
                                     echo'<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario <b class="caret"></b></a>';
                                     echo'<ul class="dropdown-menu">';
-                                    echo'<li><a href="registro.php?micuenta=SI">Mi Cuenta</a></li>';
+                                    echo'<li><a href="registro.php?cuenta=SI">Mi Cuenta</a></li>';
                                     echo'<li><a href="listadoPedidos.php">Pedidos Abiertos</a></li>';
                                     echo'<li><a href="listadoPedidos.php?historico=si">Histórico Pedidos</a></li>';
                                     echo'</ul>';

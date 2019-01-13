@@ -11,13 +11,7 @@ include_once("toolsCategories.php");
 <?php    
    showcategories();
 ?>
-<!--     	                
-            <li><a href="#"><span class="icon-chevron-right"></span>Uniformes</a></li>
-            <li><a href="#"><span class="icon-chevron-right"></span>Accesorios</a></li>
-            <li><a href="#"><span class="icon-chevron-right"></span>Consumibles</a></li>
-            <li style="border:0"> &nbsp;</li>
-            <!--<li> <a class="totalInCart" href="#"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
--->
+
 		    <li style="border:0"> &nbsp;</li>
 		    
         </ul>

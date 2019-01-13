@@ -18,7 +18,7 @@ include_once("appSettings.php");
 
     //Metodo para cerrar una conexión
     function cerrar_conexion($con) {
-        $con=null;        
+        $con=null;         
     }
 
 ?>
