@@ -1,11 +1,11 @@
 <?php
-//COMPRUEBA QUE EL USUARIO ESTA AUTENTIFICADO
+//chequea si el usuario esta autenticado
 
 if (isset($_SESSION["logon"])){
-    //existe la variable de sesión, entonces comprueba el valor
+    //comprueba el valorr
     if ($_SESSION["logon"] != "SI")
     {
-        //distinto de si pintamos el formulario de LOGIN
+        //Si no lo esta dibujamos formulario de login
            include("formLogin.php");
 
     }else{

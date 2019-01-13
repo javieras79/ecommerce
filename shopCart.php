@@ -5,7 +5,7 @@ include_once("toolsCart.php");
 ?>
 
 <!--
-contenido de la página
+carga y muestra el carrito
 -->
 
 <div class="span12">

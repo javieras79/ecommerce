@@ -1,6 +1,6 @@
 <?php
 include("conectBBDD.php");
-
+//consulta de usuarios registrados si existe arranca session sino se envia al formulario de registro
 $usr=$_POST["usuario"];
 $pwd=$_POST["inputPassword"];
 $usuario="";

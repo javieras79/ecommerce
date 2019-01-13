@@ -4,7 +4,7 @@ include_once("conectBBDD.php");
 $usr=$_POST["nick"];
 
 checkNick($usr);
-
+//Chequea si el usuario existe y redirecciona si encuentra
 function checkNick($usr){    
     $con=conectar_bd();
     $sql=$con->prepare("select nick from usuarios where nick='".$usr."'");
@@ -17,7 +17,7 @@ function checkNick($usr){
         saveUser($usr);
     }
 }
-
+//funcion que inserta un registro de usuario y posteriormente inicia una sesion
 function saveUser($usr){
     $pwd=$_POST["password"];
     $email=$_POST["email"];

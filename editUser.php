@@ -1,7 +1,7 @@
 <?php
 include_once("conectBBDD.php");
 
-//recibe la variable del menu de navegacion
+//recibe la variable del menu de navegacion y consulta los valores para introducirlos en el formulario de registro
 if(isset($_GET['cuenta'])){
   
     $usr=$_SESSION["usr"];

@@ -1,6 +1,7 @@
 <?php
 include_once("conectBBDD.php");
 
+//funcion que dibuja y muestra las categorias y subcategorias
 function showcategories(){
     
     $con = conectar_bd();
@@ -42,7 +43,7 @@ function showcategories(){
         }
     }
 }
-
+//funcionar que carga tabla de categorias pero del menú de mantenimiento perfil con rol 2
 function mtoCategories(){
     
     echo '<div class="span12">';

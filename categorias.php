@@ -9,6 +9,7 @@ include_once("toolsCategories.php");
     <div id="cssmenu">
     <ul>
 <?php    
+    //llama a categorias para mostrarlas en el nav
    showcategories();
 ?>
 
