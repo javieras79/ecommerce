@@ -13,7 +13,7 @@ drop table if exists estadoPedido;
 create table categorias (
 	id_categoria int not null auto_increment,
 	nombre_categoria varchar(50),
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	constraint pk_idcategoria primary key (id_categoria)
 	) engine = innodb;
 	
@@ -21,7 +21,7 @@ create table subcategorias (
 	id_subcategoria int not null auto_increment,
     id_categoria int,
 	nombre_subcategoria varchar(50),
-	baja bool not null default 0,    
+	activo boolean not null default 0,    
 	constraint pk_idsubcategoria primary key (id_subcategoria),
     constraint fk_idcategoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
 	) engine = innodb;
@@ -29,7 +29,7 @@ create table subcategorias (
 create table marcas (
 	id_marca int not null auto_increment,
 	nombre_marca varchar(50),
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	constraint pk_idmarca primary key (id_marca)
 	) engine = innodb;	
 
@@ -42,8 +42,8 @@ create table articulos (
 	descripcion varchar(220) not null,
 	precio decimal (8,2),
 	iva decimal (8,2),
-	baja bool not null default 0,
-	tablon bool not null default 0,
+	activo boolean not null default 0,
+	tablon boolean not null default 0,
 	usr_modif varchar(45),
 	fecha_modif date not null,
 	constraint pk_articulo primary key (id_articulo),
@@ -56,7 +56,7 @@ create table articulos (
 create table roles (
 	id_rol int not null auto_increment,
 	rol varchar(50),
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	constraint pk_idrol primary key (id_rol)
 	) engine = innodb;
 	
@@ -73,7 +73,7 @@ create table usuarios (
 	poblacion varchar(50),
 	telefono varchar(15),
 	rellenado bool not null default 0,
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	id_rol int,	
     constraint pk_usuario primary key (id_usuario),
     constraint fk_id_rol FOREIGN KEY (id_rol) REFERENCES roles (id_rol)
@@ -82,7 +82,7 @@ create table usuarios (
 create table estadoPedido (
 	id_estado int not null auto_increment,
 	estado varchar(50),
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	primary key (id_estado)
 	) engine = innodb;
 
@@ -93,7 +93,7 @@ create table pedido (
 	id_tienda int,
 	id_usuario int,
 	id_estado int,
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	constraint pk_idpedido primary key (id_pedido),
     constraint fk_idusuario FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
     constraint fk_idestado FOREIGN KEY (id_estado) REFERENCES estadoPedido (id_estado)
@@ -108,7 +108,7 @@ create table detallePedido (
 	precio decimal (8,2),
 	iva decimal (8,2),
 	cantidad int,
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	constraint pk_iddetalle primary key (id_detalle),
     constraint fk_idpedido FOREIGN KEY (id_pedido) REFERENCES pedido (id_pedido),
     constraint fk_idarticulo FOREIGN KEY (id_articulo) REFERENCES articulos (id_articulo)
@@ -125,7 +125,7 @@ create table tiendas (
 	provincia varchar(15),
 	ciudad varchar(25),
 	email varchar(30),
-	baja bool not null default 0,
+	activo boolean not null default 0,
 	primary key (id_tienda)
 	)	engine = innodb;
  
