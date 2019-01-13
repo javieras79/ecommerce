@@ -39,7 +39,7 @@ Menú de navegación
                                     echo'<ul class="dropdown-menu">';
                                     echo'<li><a href="registro.php?cuenta=SI">Mi Cuenta</a></li>';
                                     echo'<li><a href="listadoPedidos.php">Pedidos Abiertos</a></li>';
-                                    echo'<li><a href="listadoPedidos.php?historico=si">Histórico Pedidos</a></li>';
+                                    echo'<li><a href="listadoPedidos.php?historico=si">Historico Pedidos</a></li>';
                                     echo'</ul>';
                                     echo'</li>';
                                 }

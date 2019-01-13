@@ -2,16 +2,17 @@
 include("conectBBDD.php");
 
 $usr=$_POST["usuario"];
-$psw=$_POST["inputPassword"];
-
+$pwd=$_POST["inputPassword"];
+$usuario="";
 $con=conectar_bd();
-$sql= $con->prepare("Select * from usuarios where nick='" . $usr ."' and password='". $psw ."'");
+$sql= $con->prepare("Select * from usuarios where nick='" . $usr ."' and password='". $pwd ."'");
 $sql->execute();
 
     while($res = $sql->fetch()){    
         $usuario = $res["nick"];
         $id_rol = $res["id_rol"];
     }
+    
 if ($usuario){    
         //El usuario existe
         session_start();
