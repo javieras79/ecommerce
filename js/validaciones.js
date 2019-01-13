@@ -12,7 +12,7 @@ function validarAlta(){
     if(!validaNick()){
         return false;
     }
-    if(!validaPsw()){
+    if(!validaPwd()){
         return false;
     }
 
@@ -62,7 +62,7 @@ function validaNick(){
     return true;
 }
 
-    function validaPsw(){
+    function validaPwd(){
     //Guarda el valor del elemento nombre en una variable
     var psw=document.getElementById("pasw").value;
     //Comprobamos si cumple alguna de estas condiciones.

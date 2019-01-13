@@ -3,20 +3,20 @@
     include("menu.php");
 ?>
 <!--
-Seccion de contenido donde se incluye las categorias desde php
+Incluir categorias
 -->
 <?php
 include("categorias.php")
 ?>
 <!--
-contenido de la página
+contenido formulario registro
 -->
 
 <div class="span9">
 <h3> Registro de Usuarios</h3>
 <hr class="soft"/>
 <div class="well">
-    <form class="form-horizontal" action="usuario.php" method="POST" onsubmit="return validarAlta();">
+    <form class="form-horizontal" action="tooluser.php" method="POST" onsubmit="return validarAlta();">
         <h3>Datos Personales</h3>
         <div class="control-group">
             <label class="control-label" for="nombre">Nombre <sup>*</sup></label>
@@ -40,7 +40,7 @@ contenido de la página
             <label class="control-label" for="nick">Usuario <sup>*</sup></label>
             <div class="controls">
                 <input type="text" id="nick" placeholder="Usuario" name="nick" value="<?php
-                //comprueba si viene el campo de usuario relleno y se rellena en el formulario.
+                //comprueba si el usuario existe y lo rellena en el campo
                 if (isset($_GET["usr"]))
                     {
                         $usuario=$_GET["usr"];
@@ -52,7 +52,7 @@ contenido de la página
             if (isset($_GET["existeusr"])){
                 $existe=$_GET["existeusr"];
                 if ($existe=='SI'){
-                    echo'<div class="alert alert-danger" role="alert"><p>El usuario usado ya existe</p></div>';
+                    echo'<div class="alert alert-danger" role="alert"><p>El usuario ya existe</p></div>';
                 }
             }
             ?>

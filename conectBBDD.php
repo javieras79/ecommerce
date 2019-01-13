@@ -18,7 +18,7 @@ include_once("appSettings.php");
 
     //Metodo para cerrar una conexión
     function cerrar_conexion($con) {
-        mysqli_close($con) or die("Error al cerrar la conexión con la base de datos.");
+        $con=null;        
     }
 
 ?>
