@@ -21,7 +21,7 @@ function articuloslista($cat,$scat,$desplazamiento){
         echo "</ul>";
         echo "</div>";
     }
-    
+    //va sumando de 3 en 3 con $count y $count2 para que las imagenes se listen en filas de 3 imagenes por fila
     while($rst = $sql->fetch()){
         if($count==$count2){
             echo "</ul>";

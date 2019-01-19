@@ -1,7 +1,57 @@
 <?php
 include_once("conectBBDD.php");
 
-//funcion que dibuja y muestra las categorias y subcategorias
+//modicar categoria
+if(isset($_GET["editarCategoria"])){
+   
+    $id_cat=$_GET["id"];    
+    $nombre_categoria=$_POST["categoria"];
+    if(isset($_POST["activo"])){        
+        $activo=1;        
+    }else{        
+        $activo=0;
+    }    
+    $con = conectar_bd();
+    $sql = $con->prepare('UPDATE categorias set nombre_categoria="'.$nombre_categoria.'",activo="'.$activo.'" where id_categoria='.$id_cat);
+    $sql->execute();
+    header("Location: listCategories.php");     
+}
+
+//Añadir categoria
+if(isset($_GET["addCategoria"])){
+        
+    $nombre_categoria=$_POST["categoria"];
+    if(isset($_POST["activo"])){
+        $activo=1;
+    }else{
+        $activo=0;
+    }
+    $con = conectar_bd();
+    $sql = $con->prepare('Insert into categorias (nombre_categoria,activo) VALUES (:nombre_categoria,:activo);');
+    $sql->bindParam(':nombre_categoria',$nombre_categoria,PDO::PARAM_STR);
+    $sql->bindParam(':activo',$activo,PDO::PARAM_INT);
+    $sql->execute();
+    header("Location: listCategories.php");
+}
+
+//Borrar categoria
+if(isset($_GET["delCategoria"])){
+    
+    $id_cat=$_GET["id"];
+    $con = conectar_bd();
+    $sql = $con->prepare("select id_categoria from subcategorias where id_categoria=".$id_cat);
+    $sql->execute();  
+    $reg = $sql->fetchColumn(0);    
+    if($reg==null){
+    $sql = $con->prepare("delete from categorias where id_categoria=".$id_cat);    
+    $sql->execute();
+    header("Location: listCategories.php");
+    }else{        
+        header("Location: listCategories.php?sendError='SI'");
+    }
+}
+
+//funcion que dibuja y muestra las categorias y subcategorias en la pagina principal
 function showcategories(){
     
     $con = conectar_bd();
@@ -50,26 +100,27 @@ function mtoCategories(){
     echo '<h3> Mantenimiento de Categorias</h3>';
     echo '<hr class="soft">';
     echo '<div class="well">';
-    echo '<a class="shopBtn" href="addCategories.php">Nueva Categoria</a>';
+    echo '<a class="shopBtn" href="mtoCategories.php">Nueva Categoria</a>';
     echo '<hr class="soft">';
     echo '<div class="table-responsive">';
     echo '<table class="table table-condensed">';
     echo '<tr class="success">';
-    echo "<td>";
+    echo "<td><strong>";
     echo "Id Categoria";
-    echo "</td>";
-    echo "<td>";
+    echo "</strong></td>";
+    echo "<td><strong>";
     echo "Nombre Categoria";
-    echo "</td>";
-    echo "<td>";
+    echo "</strong></td>";
+    echo "<td><strong>";
     echo "Activado";
-    echo "</td>";
-    echo "<td>";
+    echo "</strong></td>";
+    echo "<td><strong>";
     echo "Edita";
-    echo "</td>";
-    echo "<td>";
+    echo "</strong></td>";
+    echo "<td><strong>";
     echo "Borra";
-    echo "</td>";
+    echo "</strong></td>";
+    echo "</tr>";
     
     $con = conectar_bd();
     $sql = $con->prepare('Select * from categorias;');
@@ -94,25 +145,28 @@ function mtoCategories(){
         }else{
             $chk="checked";
         }
-        echo '<center><input type="checkbox" name="checkbox[]"'. $chk .' disabled></center>';
+        echo '<input type="checkbox" name="checkbox[]"'. $chk .' disabled>';
         echo '</div>';
         echo "</td>";
         echo "<td>";
-        echo '<a href="addCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&activo='.$activo.'">';
+        echo '<a href="mtoCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&activo='.$activo.'">';
         echo "Editar</a>";
         echo "</td>";
         echo "<td>";
-        echo "<a href='gCategorias.php?editar=SI&id='.$id.'>Borrar</a>";
-        echo "</td>";
+        echo '<a href="toolsCategories.php?delCategoria=SI&id='.$id.'">Borrar</a>';
+        echo "</td>";      
+        echo "</tr>";
         
     }
-    
-    echo "</table>";
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    
-}
 
+    echo "</table>";
+    //Muestra mensaje error al no poder borrar categoria
+    if(isset($_GET["sendError"])){     
+        echo "<p style='color:red;'>La categoria no puede ser borrada ya que tiene asociada alguna subcategoria</p>";
+     }
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+}
 
 ?>

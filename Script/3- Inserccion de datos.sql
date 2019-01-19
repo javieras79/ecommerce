@@ -30,6 +30,11 @@ INSERT INTO articulos (`id_categoria`, `id_subcategoria`, `id_marca`, `nombre_ar
 INSERT INTO articulos (`id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `tablon`) VALUES ('1', '2', '3', 'S635', 'Subfusil de Asalto', '120.00', '21.00', '1');
 INSERT INTO articulos (`id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `tablon`) VALUES ('2', '5', '2', 'Chaqueta', 'Camuflaje Woodland', '35.00', '21.00', '1');
 INSERT INTO articulos (`id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `tablon`) VALUES ('3', '4', '3', 'Bolas', '0.20mm recycled', '12.00', '21.00', '1');
+INSERT INTO articulos (`id_articulo`, `id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `activo`, `tablon`, `usr_modif`, `fecha_modif`) VALUES (NULL, '1', '1', '2', 'Sig Sauer 556 Shorty CQB', 'Fusil de Asalto', '416.27', '21.00', '0', '1', NULL, '');
+INSERT INTO articulos (`id_articulo`, `id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `activo`, `tablon`, `usr_modif`, `fecha_modif`) VALUES (NULL, '1', '1', '3', 'Go 999RAS rifle replica GBB', 'Fusil de Asalto', '411.91', '21.00', '0', '1', NULL, '');
+INSERT INTO articulos (`id_articulo`, `id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `activo`, `tablon`, `usr_modif`, `fecha_modif`) VALUES (NULL, '1', '1', '4', 'LCK74MN NV', 'Fusil de Asalto', '401.43', '21.00', '0', '1', NULL, '');
+INSERT INTO articulos (`id_articulo`, `id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `activo`, `tablon`, `usr_modif`, `fecha_modif`) VALUES (NULL, '1', '1', '3', 'Ak 47', 'Fusil de Asalto', '114.84', '21.00', '0', '1', NULL, '');
+INSERT INTO articulos (`id_articulo`, `id_categoria`, `id_subcategoria`, `id_marca`, `nombre_articulo`, `descripcion`, `precio`, `iva`, `activo`, `tablon`, `usr_modif`, `fecha_modif`) VALUES (NULL, '1', '1', '1', 'Srt-09', 'Fusil de Asalto', '116.15', '21.00', '0', '1', NULL, '');
 
 INSERT INTO estadopedido (estado,activo) values ("cerrado",0);
 INSERT INTO estadopedido (estado,activo) values ("Abierto",1);
