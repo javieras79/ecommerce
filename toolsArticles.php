@@ -23,9 +23,9 @@ if(isset($_GET["editArticle"])){
             $valor="./img/articulos/".$nom_img;
             $destino = (string)$valor;
             move_uploaded_file($temp, $destino);
-        }else{
-            
         }
+    }else{
+        $nom_img=selImage($id);
     }
     if(isset($_POST["activo"])){
         $activo=1;
@@ -57,18 +57,18 @@ if(isset($_GET["addArticle"])){
     $precio=$_POST["precio"];
     $iva=$_POST["iva"];
     //inserta imagen nueva        
-    if($_FILES["imagen"]["tmp_name"]){
-        $temp = $_FILES["imagen"]["tmp_name"];
-        $nom_img=$_FILES["imagen"]["name"];
-        $file=getimagesize($temp);
+        if($_FILES["imagen"]["tmp_name"]){
+            $temp = $_FILES["imagen"]["tmp_name"];
+            $nom_img=$_FILES["imagen"]["name"];
+            $file=getimagesize($temp);
             if($file[2] == 2 ){
                 $valor="./img/articulos/".$nom_img;
                 $destino = (string)$valor;
                 move_uploaded_file($temp, $destino);
-            }else{
-                
             }
-    }
+        }else{
+        $nom_img="sin_resultados.jpg";
+        }
     if(isset($_POST["activo"])){
         $activo=1;
     }else{
@@ -124,7 +124,7 @@ function articuloslista($cat,$scat,$desplazamiento){
     $con = conectar_bd();    
     $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
-                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' limit 0,'.$desplazamiento.';');
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1 limit 0,'.$desplazamiento.';');
     $sql->execute();  
     $reg=$sql->rowCount();
     $count=0;
