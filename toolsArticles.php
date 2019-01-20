@@ -11,6 +11,22 @@ if(isset($_GET["editArticle"])){
     $descripcion=$_POST["descripcion"];
     $precio=$_POST["precio"];
     $iva=$_POST["iva"];
+    
+    //actualiza imagen
+    if($_FILES["imagen"]["tmp_name"]){
+        $old_img=selImage($id);
+        unlink("./img/articulos/".$old_img);
+        $temp = $_FILES["imagen"]["tmp_name"];
+        $nom_img=$_FILES["imagen"]["name"];
+        $file=getimagesize($temp);
+        if($file[2] == 2 ){
+            $valor="./img/articulos/".$nom_img;
+            $destino = (string)$valor;
+            move_uploaded_file($temp, $destino);
+        }else{
+            
+        }
+    }
     if(isset($_POST["activo"])){
         $activo=1;
     }else{
@@ -26,7 +42,7 @@ if(isset($_GET["editArticle"])){
     $con=conectar_bd();
     $sql=$con->prepare('update articulos set id_categoria="'.$id_categoria.'",id_subcategoria="'.$id_subcategoria.'",id_marca="'.$id_marca.'",
                         nombre_articulo="'.$nombre_articulo.'",descripcion="'.$descripcion.'",precio="'.$precio.'",iva="'.$iva.'",activo="'.$activo.'",
-                        tablon="'.$tablon.'",usr_modif="'.$usuario.'",fecha_modif="'.$fecha.'" where id_articulo='.$id);
+                        tablon="'.$tablon.'",usr_modif="'.$usuario.'",fecha_modif="'.$fecha.'",imagen="'.$nom_img.'" where id_articulo='.$id);
     $sql->execute();
     header("Location: listArticles.php?actualiza='ok'"); 
 }
@@ -83,6 +99,15 @@ if(isset($_GET["addArticle"])){
     $sql->execute();
     header("Location: listArticles.php?alta='ok'");    
 }  
+
+//Seleccion imagen antigua
+function selImage($id_articulo){
+    $con=conectar_bd();
+    $sql=$con->prepare('select imagen from articulos where id_articulo='.$id_articulo);
+    $sql->execute();
+    $imagen=$sql->fetchColumn(0);
+    return $imagen;
+}
 
 //Borra articulo
 if(isset($_GET["remArticle"])){
