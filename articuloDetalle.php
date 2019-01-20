@@ -14,14 +14,13 @@ include("categorias.php");
 <div class="well well-small">
 <?php
     //comprueba los ids de los articulos que están vinculados con las imagenes para que se muestren
-    if(isset($_GET['idart']) && isset($_GET['idcat']) && isset($_GET['idscat'])){
+    if(isset($_GET['imagen'])){
         echo "<div class='thumbnail'>";
         echo "<a href='product_details.html' class='overlay'></a>";
-        echo '<a class="zoomTool" href="showArticles.php?id_cat='.$_GET['idcat'].'&id_scat='.$_GET['idscat'].'" title="volver"><span class="icon-search"></span> Volver</a>';        
-        echo "<img src='img/articulos/".$_GET["idart"].".jpg' alt=''></a>";
+        echo "<a class='zoomTool' href='".$_SERVER['HTTP_REFERER']."' title='volver'><span class='icon-search'></span> Volver</a>";        
+        echo "<img src='img/articulos/".$_GET["imagen"]."' alt=''></a>";
         echo "</div>";
-    }else{
-    echo "hola";
+    }else{    
     }
 ?>
 </div>

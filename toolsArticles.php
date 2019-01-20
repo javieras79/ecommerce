@@ -125,8 +125,8 @@ function articuloslista($cat,$scat,$desplazamiento){
         echo "<li class='span4'>";
         echo "<div class='thumbnail'>";
         echo "<a href='product_details.html' class='overlay'></a>";
-        echo '<a class="zoomTool" href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
-        echo '<a href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'">';
+        echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$rst['imagen'].'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
+        echo '<a href="articuloDetalle.php?imagen='.$rst['imagen'].'">';
         echo "<img src='img/articulos/".$rst["imagen"]."' alt=''></a>";
         echo "<div class='caption cntr'>";
         echo "<p>".$rst['descripcion']."</p>";
