@@ -1,11 +1,103 @@
 <?php
 include_once("conectBBDD.php");
 
+//actualizar articulo
+if(isset($_GET["editArticle"])){
+    $id=$_GET["id"];
+    $id_categoria=$_POST["categoria"];
+    $id_subcategoria=$_POST["subcategoria"];
+    $id_marca=$_POST["marca"];
+    $nombre_articulo=$_POST["articulo"];
+    $descripcion=$_POST["descripcion"];
+    $precio=$_POST["precio"];
+    $iva=$_POST["iva"];
+    if(isset($_POST["activo"])){
+        $activo=1;
+    }else{
+        $activo=0;
+    }    
+    if(isset($_POST["tablon"])){
+        $tablon=1;
+    }else{
+        $tablon=0;
+    }
+    $usuario=$_POST["usuario"];
+    $fecha=$_POST["fecha"];
+    $con=conectar_bd();
+    $sql=$con->prepare('update articulos set id_categoria="'.$id_categoria.'",id_subcategoria="'.$id_subcategoria.'",id_marca="'.$id_marca.'",
+                        nombre_articulo="'.$nombre_articulo.'",descripcion="'.$descripcion.'",precio="'.$precio.'",iva="'.$iva.'",activo="'.$activo.'",
+                        tablon="'.$tablon.'",usr_modif="'.$usuario.'",fecha_modif="'.$fecha.'" where id_articulo='.$id);
+    $sql->execute();
+    header("Location: listArticles.php?actualiza='ok'"); 
+}
+
+//Añade articulo
+if(isset($_GET["addArticle"])){
+    $id_categoria=$_POST["categoria"];
+    $id_subcategoria=$_POST["subcategoria"];
+    $id_marca=$_POST["marca"];
+    $nombre_articulo=$_POST["articulo"];
+    $descripcion=$_POST["descripcion"];
+    $precio=$_POST["precio"];
+    $iva=$_POST["iva"];
+    //inserta imagen nueva        
+    if($_FILES["imagen"]["tmp_name"]){
+        $temp = $_FILES["imagen"]["tmp_name"];
+        $nom_img=$_FILES["imagen"]["name"];
+        $file=getimagesize($temp);
+            if($file[2] == 2 ){
+                $valor="./img/articulos/".$nom_img;
+                $destino = (string)$valor;
+                move_uploaded_file($temp, $destino);
+            }else{
+                
+            }
+    }
+    if(isset($_POST["activo"])){
+        $activo=1;
+    }else{
+        $activo=0;
+    }
+    if(isset($_POST["tablon"])){
+        $tablon=1;
+    }else{
+        $tablon=0;
+    }
+    $usuario=$_POST["usuario"];
+    $fecha=$_POST["fecha"];
+    $con=conectar_bd();
+    $sql=$con->prepare('Insert into articulos (id_categoria,id_subcategoria,id_marca,nombre_articulo,descripcion,precio,iva,activo,tablon,usr_modif,fecha_modif,imagen) VALUES (:id_categoria,:id_subcategoria,:id_marca,:nombre_articulo,:descripcion,:precio,:iva,:activo,:tablon,:usuario,:fecha,:imagen);');
+    
+    $sql->bindParam(':id_categoria',$id_categoria,PDO::PARAM_INT);
+    $sql->bindParam(':id_subcategoria',$id_subcategoria,PDO::PARAM_INT);
+    $sql->bindParam(':id_marca',$id_marca,PDO::PARAM_INT);
+    $sql->bindParam(':nombre_articulo',$nombre_articulo,PDO::PARAM_STR);
+    $sql->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
+    $sql->bindParam(':precio',$precio,PDO::PARAM_INT);
+    $sql->bindParam(':iva',$iva,PDO::PARAM_INT);
+    $sql->bindParam(':activo',$activo,PDO::PARAM_INT);
+    $sql->bindParam(':tablon',$tablon,PDO::PARAM_INT);
+    $sql->bindParam(':usuario',$usuario,PDO::PARAM_STR);
+    $sql->bindParam(':fecha',$fecha,PDO::PARAM_STR);
+    $sql->bindParam(':imagen',$nom_img,PDO::PARAM_STR);
+    $sql->execute();
+    header("Location: listArticles.php?alta='ok'");    
+}  
+
+//Borra articulo
+if(isset($_GET["remArticle"])){
+    $id=$_GET['id'];
+    $con=conectar_bd();
+    $sql=$con->prepare('delete from articulos where id_articulo='.$id);
+    $sql->execute();
+    header("Location: listArticles.php?borra='ok'");
+}
+
 //muestra en el cuerpo la lista de articulos de la categoria seleccionada
 function articuloslista($cat,$scat,$desplazamiento){
     
     $con = conectar_bd();    
-    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
+    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
                             INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' limit 0,'.$desplazamiento.';');
     $sql->execute();  
@@ -35,7 +127,7 @@ function articuloslista($cat,$scat,$desplazamiento){
         echo "<a href='product_details.html' class='overlay'></a>";
         echo '<a class="zoomTool" href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
         echo '<a href="articuloDetalle.php?idart='.$rst['id_articulo'].'&idcat='.$rst['id_categoria'].'&idscat='.$rst['id_subcategoria'].'">';
-        echo "<img src='img/articulos/".$rst["id_articulo"].".jpg' alt=''></a>";
+        echo "<img src='img/articulos/".$rst["imagen"]."' alt=''></a>";
         echo "<div class='caption cntr'>";
         echo "<p>".$rst['descripcion']."</p>";
         echo "<p>".$rst['nombre_articulo']."</p>";
@@ -180,21 +272,28 @@ function mtoArticles(){
         
         echo "<td><center>";
         echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
-        echo '<a href="toolsArticles.php?delCategoria=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo '<a href="toolsArticles.php?remArticle=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";        
         echo "</tr>";
         
     }
     
     echo "</table>";
-    //Muestra mensaje error al no poder borrar categoria
-    if(isset($_GET["sendError"])){
-        echo "<p style='color:red;'>La categoria no puede ser borrada ya que tiene asociada alguna subcategoria</p>";
+
+    //mensaje articulo añadido
+    if(isset($_GET['alta'])){
+        echo "<p style='color:green;'>El artículo ha sido agregado con éxito.</p>";
+    }    
+    //mensaje articulo borrado
+    if(isset($_GET['borra'])){
+        echo "<p style='color:green;'>El artículo ha sido borrado con éxito.</p>";
+    }
+    //mensaje articulo borrado
+    if(isset($_GET['actualiza'])){
+        echo "<p style='color:green;'>El artículo ha sido modificado con éxito.</p>";
     }
     echo '</div>';
     echo '</div>';
     echo '</div>';
 }
-
-
 ?>
