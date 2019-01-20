@@ -111,15 +111,12 @@ function mtoCategories(){
     echo "<td><strong>";
     echo "Nombre Categoria";
     echo "</strong></td>";
-    echo "<td><strong>";
+    echo "<td><center><strong>";
     echo "Activado";
-    echo "</strong></td>";
-    echo "<td><strong>";
-    echo "Edita";
-    echo "</strong></td>";
-    echo "<td><strong>";
-    echo "Borra";
-    echo "</strong></td>";
+    echo "</strong></center></td>";
+    echo "<td><center><strong>";
+    echo "Accion";
+    echo "</strong></center></td>";    
     echo "</tr>";
     
     $con = conectar_bd();
@@ -145,16 +142,13 @@ function mtoCategories(){
         }else{
             $chk="checked";
         }
-        echo '<input type="checkbox" name="checkbox[]"'. $chk .' disabled>';
+        echo '<center><input type="checkbox" name="checkbox[]"'. $chk .' disabled></center>';
         echo '</div>';
         echo "</td>";
-        echo "<td>";
-        echo '<a href="mtoCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&activo='.$activo.'">';
-        echo "Editar</a>";
-        echo "</td>";
-        echo "<td>";
-        echo '<a href="toolsCategories.php?delCategoria=SI&id='.$id.'">Borrar</a>';
-        echo "</td>";      
+        echo "<td><center>";
+        echo '<a href="mtoCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&activo='.$activo.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';        
+        echo '<a href="toolsCategories.php?delCategoria=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo "</center></td>";      
         echo "</tr>";
         
     }
