@@ -46,6 +46,7 @@ create table articulos (
 	tablon boolean not null default 0,
 	usr_modif varchar(45),
 	fecha_modif date not null,
+    imagen varchar(120),
 	constraint pk_articulo primary key (id_articulo),
     constraint fk_id_categoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria),
     constraint fk_id_subcategoria FOREIGN KEY (id_subcategoria) REFERENCES subcategorias (id_subcategoria),

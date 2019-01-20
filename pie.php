@@ -24,7 +24,7 @@ Pie de la página
 
 <div class="copyright">
     <div class="container">
-        <span>Copyright &copy; 2015<br> B-Ros Shop Online </span>
+        <span>Copyright &copy; 2015<br> Javieras Tienda Online </span>
     </div>
 </div>
 <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
