@@ -25,7 +25,7 @@ Menú de navegación
                                     echo'<li><a href="listArticles.php">Articulos</a></li>';
                                     echo'<li><a href="listCategories.php">Categorias</a></li>';
                                     echo'<li><a href="gMarcas.php">Marcas</a></li>';
-                                    echo'<li><a href="gPedidos.php">Pedidos Clientes</a></li>';
+                                    echo'<li><a href="listOrders.php">Pedidos Clientes</a></li>';
                                     echo'<li class="divider"></li>';
                                         if($_SESSION["rol"]==2){
                                             echo'<li><a href="listadoUsuarios.php">Usuarios</a></li>';
@@ -38,8 +38,8 @@ Menú de navegación
                                     echo'<a href="#" data-toggle="dropdown" class="dropdown-toggle">Usuario <b class="caret"></b></a>';
                                     echo'<ul class="dropdown-menu">';
                                     echo'<li><a href="registro.php?cuenta=SI">Mi Cuenta</a></li>';
-                                    echo'<li><a href="listadoPedidos.php">Pedidos Abiertos</a></li>';
-                                    echo'<li><a href="listadoPedidos.php?historico=si">Historico Pedidos</a></li>';
+                                    echo'<li><a href="listOrders.php">Pedidos Abiertos</a></li>';
+                                    echo'<li><a href="listOrders.php?historico=si">Historico Pedidos</a></li>';
                                     echo'</ul>';
                                     echo'</li>';
                                 }
