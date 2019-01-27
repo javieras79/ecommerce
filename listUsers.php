@@ -1,0 +1,11 @@
+<?php
+include("cabecera.php");
+include("menu.php");
+include_once("toolsUsers.php");
+?>
+		<?php
+            mtoUsers();
+        ?>
+<?php
+    include("pie.php");
+?>

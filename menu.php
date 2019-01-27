@@ -28,7 +28,7 @@ Menú de navegación
                                     echo'<li><a href="listOrders.php">Pedidos Clientes</a></li>';
                                     echo'<li class="divider"></li>';
                                         if($_SESSION["rol"]==2){
-                                            echo'<li><a href="listadoUsuarios.php">Usuarios</a></li>';
+                                            echo'<li><a href="listUsers.php">Usuarios</a></li>';
                                         }
                                     echo'</ul>';
                                     echo'</li>';
