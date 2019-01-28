@@ -7,6 +7,8 @@ include_once("toolsOrders.php");
 		if(isset($_SESSION['usr'])){
 		    $user=$_SESSION['usr'];
 		    showOrders($user);
+		}else{
+		    echo "No tiene permisos para acceder a este menu";
 		}
            
         ?>

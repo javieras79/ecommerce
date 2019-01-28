@@ -8,6 +8,8 @@ include_once("conectBBDD.php");
 Seccion de contenido donde se incluye las categorias desde php
 -->	
 <?php
+if(isset($_SESSION['usr'])){
+    
    if(isset($_GET["editar"])){
      $id=$_GET["id"];
      $con = conectar_bd();
@@ -121,7 +123,11 @@ Seccion de contenido donde se incluye las categorias desde php
    </div>
 </div>
 </form>
-
+<?php 
+    }else{
+    echo "No dispone de permisos para acceder a este menu.";    
+}
+?>
 <?php
     include("pie.php");
 ?>

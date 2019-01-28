@@ -1,6 +1,7 @@
 <?php
 include_once("conectBBDD.php");
 
+if(isset($_SESSION['usr'])){
 //funcionar que carga tabla de articulos pero del menú de mantenimiento perfil con rol 2
 function mtoUsers(){
     
@@ -205,6 +206,8 @@ if(isset($_GET["remUser"])){
     $sql->execute();
     header("Location: listUsers.php?borra='ok'");
 }
-
+}else{
+    echo "No dispone de permisos para acceder a este menu.";
+}
 ?>
 

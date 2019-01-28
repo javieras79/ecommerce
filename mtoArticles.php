@@ -1,5 +1,4 @@
 <?php
-//session_start();
 include("cabecera.php");
 include("menu.php");
 include_once("conectBBDD.php");
@@ -8,7 +7,9 @@ include_once("conectBBDD.php");
 Seccion de contenido donde se incluye las categorias desde php
 -->	
 <?php
-   if(isset($_GET["editar"])){
+if(isset($_SESSION['usr'])){
+
+    if(isset($_GET["editar"])){
      $id=$_GET["id"];
      $con = conectar_bd();
      //$sql = $con->prepare('Select * from articulos;');
@@ -211,6 +212,11 @@ Seccion de contenido donde se incluye las categorias desde php
 </div>
 </form>
 
+<?php 
+}else{
+    echo "No tiene permisos para consultar este menú.";
+}
+?>
 <?php
     include("pie.php");
 ?>

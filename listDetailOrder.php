@@ -3,7 +3,9 @@ include("cabecera.php");
 include("menu.php");
 include_once("conectBBDD.php");
 ?>
-		<?php
+<?php
+	if(isset($_SESSION['usr'])){
+	    	
 		if(isset($_GET['id_pedido'])){
 		    $id=$_GET['id_pedido'];
 		    $con=conectar_bd();
@@ -81,9 +83,11 @@ include_once("conectBBDD.php");
 		    echo "</div>";
 		    echo "</div>";
 		    echo "</div>";
-		}
-            
-        ?>
+		}            
+?>
+<?php }else{
+        echo "No dispone de permisos para acceder a este menu.";
+}?>
 <?php
     include("pie.php");
 ?>

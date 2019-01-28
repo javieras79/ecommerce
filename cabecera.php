@@ -1,5 +1,5 @@
 <?php 
-include_once("toolsCart.php");
+include("toolsCart.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
