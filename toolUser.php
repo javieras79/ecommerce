@@ -20,6 +20,7 @@ function checkNick($usr){
 //funcion que inserta un registro de usuario y posteriormente inicia una sesion
 function saveUser($usr){
     $pwd=$_POST["password"];
+    $pwd_enc=password_hash($pwd, PASSWORD_DEFAULT);
     $email=$_POST["email"];
     $nombre=$_POST["nombre"];
     $apellidos=$_POST["apellidos"];
@@ -30,11 +31,11 @@ function saveUser($usr){
         
     $con=conectar_bd();
     //id rol 1 para el rol usuario normal      
-    $sql=$con->prepare('INSERT INTO usuarios (nick,password,nombre,apellidos,email,direccion,provincia,poblacion,telefono,id_rol,rellenado)
-                        VALUES (:nick,:pwd,:nombre,:apellidos,:email,:direccion,:provincia,:poblacion,:telefono,1,1);');
+    $sql=$con->prepare('INSERT INTO usuarios (nick,password,nombre,apellidos,email,direccion,provincia,poblacion,telefono,id_rol)
+                        VALUES (:nick,:pwd,:nombre,:apellidos,:email,:direccion,:provincia,:poblacion,:telefono,1);');
     
     $sql->bindParam(':nick',$usr,PDO::PARAM_STR);
-    $sql->bindParam(':pwd',$pwd,PDO::PARAM_STR);
+    $sql->bindParam(':pwd',$pwd_enc,PDO::PARAM_STR);
     $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
     $sql->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
     $sql->bindParam(':email',$email,PDO::PARAM_STR);

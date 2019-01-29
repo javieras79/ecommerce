@@ -4,7 +4,7 @@
     include_once("toolsCategories.php");
 ?>
 		<?php
-		if(isset($_SESSION['usr'])){
+		if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
             mtoCategories();
 		}else{
 		    echo "No dispone de permisos para acceder a este menu";

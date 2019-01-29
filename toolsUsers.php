@@ -1,8 +1,8 @@
 <?php
 include_once("conectBBDD.php");
 
-if(isset($_SESSION['usr'])){
-//funcionar que carga tabla de articulos pero del menú de mantenimiento perfil con rol 2
+if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
+//funcionar que carga tabla de articulos pero del menú de mantenimiento perfil con rol 3
 function mtoUsers(){
     
     echo '<div class="span13">';
@@ -64,7 +64,7 @@ function mtoUsers(){
         echo "</td>";
         echo "<td>";
         $pwd = $datos["password"];
-        echo $pwd;
+        echo "******";
         echo "</td>";
         echo "<td>";
         $nombre = $datos["nombre"];
@@ -141,6 +141,8 @@ function mtoUsers(){
 if(isset($_GET["editUser"])){
     
     $id=$_GET['id'];
+    $pwd=$_POST['pwd'];
+    $pwd_enc=password_hash($pwd, PASSWORD_DEFAULT);
     $nick=$_POST['nick'];
     $nombre=$_POST['nombre'];
     $apellidos=$_POST['apellidos'];
@@ -156,7 +158,7 @@ if(isset($_GET["editUser"])){
     }
     $rol=$_POST['rol'];
     $con=conectar_bd();
-    $sql=$con->prepare('update usuarios set nick="'.$nick.'",nombre="'.$nombre.'",apellidos="'.$apellidos.'",
+    $sql=$con->prepare('update usuarios set nick="'.$nick.'",password="'.$pwd_enc.'",nombre="'.$nombre.'",apellidos="'.$apellidos.'",
                         email="'.$email.'",direccion="'.$direccion.'",provincia="'.$provincia.'",poblacion="'.$poblacion.'",
                         telefono="'.$telefono.'",activo="'.$activo.'",id_rol="'.$rol.'" where id_usuario='.$id);
     $sql->execute();
@@ -167,6 +169,8 @@ if(isset($_GET["editUser"])){
 if(isset($_GET['addUser'])){
     
     $nick=$_POST['nick'];
+    $pwd=$_POST['pwd'];
+    $pwd_enc=password_hash($pwd, PASSWORD_DEFAULT);
     $nombre=$_POST['nombre'];
     $apellidos=$_POST['apellidos'];
     $email=$_POST['email'];
@@ -181,10 +185,11 @@ if(isset($_GET['addUser'])){
     }
     $rol=$_POST['rol'];
     $con=conectar_bd();
-    $sql=$con->prepare('insert into usuarios (nick,nombre,apellidos,email,direccion,provincia,poblacion,telefono,activo,id_rol)
-                         VALUES (:nick,:nombre,:apellidos,:email,:direccion,:provincia,:poblacion,:telefono,:activo,:rol);');
+    $sql=$con->prepare('insert into usuarios (nick,password,nombre,apellidos,email,direccion,provincia,poblacion,telefono,activo,id_rol)
+                         VALUES (:nick,:pwd,:nombre,:apellidos,:email,:direccion,:provincia,:poblacion,:telefono,:activo,:rol);');
     
     $sql->bindParam(':nick',$nick,PDO::PARAM_STR);
+    $sql->bindParam(':pwd',$pwd_enc,PDO::PARAM_STR);
     $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
     $sql->bindParam(':apellidos',$apellidos,PDO::PARAM_STR);
     $sql->bindParam(':email',$email,PDO::PARAM_STR);

@@ -1,10 +1,10 @@
 <?php
-(isset($_GET['vistaDetalle'])) ? include("cabeceraDetalle.php"): include("cabecera.php");
-(isset($_GET['vistaDetalle'])) ? : include("menu.php");
+include("cabecera.php");
+include("menu.php");
 include_once("conectBBDD.php");
 ?>
 <?php
-if(isset($_SESSION['usr']) && $_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
+if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
 	    	
 		if(isset($_GET['id_pedido'])){
 		    $id=$_GET['id_pedido'];
@@ -77,11 +77,8 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 || 
 		    echo "<td align='right'><strong>Total Unidades</strong></td>";
 		    echo "<td align='right'><strong>".$totalArt."</strong></td>";
 		    echo "<td align='right'><strong>Total:</strong></td><td align='center'><strong>".$total.".00 euros</strong></td>";
-		    echo "</tr>";	
-		    if(isset($_GET['vistaDetalle'])){		      
-		    }else{
-		        echo "<tr><td><a class='shopBtn' href='".$_SERVER['HTTP_REFERER']."'>Volver</a></td></tr>";
-		    }		    
+		    echo "</tr>";		    
+		    echo "<tr><td><a class='shopBtn' href='".$_SERVER['HTTP_REFERER']."'>Volver</a></td></tr>";
 		    echo "</table>";            
 		    echo "</div>";
 		    echo "</div>";
@@ -90,8 +87,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 || 
 ?>
 <?php }else{
         echo "No dispone de permisos para acceder a este menu.";
-      }
-?>
+}?>
 <?php
-(isset($_GET['vistaDetalle'])) ? : include("pie.php");   
+    include("pie.php");
 ?>

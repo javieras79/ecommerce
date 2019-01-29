@@ -15,7 +15,7 @@ if(isset($_GET['cuenta'])){
     $apellidos=$rst["apellidos"];
     $email=$rst["email"];
     $nick=$rst["nick"];
-    $pwd=$rst["password"];   
+    $pwd=$rst["password"];       
     $direccion=$rst["direccion"];
     $provincia=$rst["provincia"];
     $poblacion=$rst["poblacion"];
@@ -27,6 +27,7 @@ if(isset($_GET['edit'])){
     
     $nick=$_POST['nick'];
     $pwd=$_POST["password"];
+    $pwd=password_hash($pwd, PASSWORD_DEFAULT);
     $nombre=$_POST["nombre"];
     $apellidos=$_POST["apellidos"];
     $email=$_POST["email"];    

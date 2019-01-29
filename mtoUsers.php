@@ -8,7 +8,7 @@ include_once("conectBBDD.php");
 Seccion de contenido donde se incluye las categorias desde php
 -->	
 <?php
-if(isset($_SESSION['usr'])){
+if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
     
    if(isset($_GET["editar"])){
      $id=$_GET["id"];
@@ -19,6 +19,7 @@ if(isset($_SESSION['usr'])){
      while($datos = $sql->fetch()){
          
          $id=$datos["id_usuario"];
+         $pwd=$datos["password"];
          $nick=$datos["nick"];
          $nombre=$datos["nombre"];
          $apellidos=$datos["apellidos"];
@@ -47,6 +48,12 @@ if(isset($_SESSION['usr'])){
     	<label class="control-label" for="nick">Nick <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="nick" placeholder="nick" name="nick" value="<?php if(isset($_GET["editar"])){echo $nick;}else{}?>">                   
+   			</div>
+    	</div>
+    	<div class="control-group">
+    	<label class="control-label" for="pwd">Password <sup>*</sup></label>
+    		<div class="controls">
+    			<input type="password" id="pwd" placeholder="pwd" name="pwd" value="<?php if(isset($_GET["editar"])){echo $pwd;}else{}?>">                   
    			</div>
     	</div>
     	<div class="control-group">

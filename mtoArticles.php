@@ -7,7 +7,7 @@ include_once("conectBBDD.php");
 Seccion de contenido donde se incluye las categorias desde php
 -->	
 <?php
-if(isset($_SESSION['usr'])){
+if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 
     if(isset($_GET["editar"])){
      $id=$_GET["id"];

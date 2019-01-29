@@ -27,7 +27,7 @@ Menú de navegación
                                     echo'<li><a href="gMarcas.php">Marcas</a></li>';
                                     echo'<li><a href="listOrders.php">Pedidos Clientes</a></li>';
                                     echo'<li class="divider"></li>';
-                                        if($_SESSION["rol"]==2){
+                                        if($_SESSION["rol"]==3){
                                             echo'<li><a href="listUsers.php">Usuarios</a></li>';
                                         }
                                     echo'</ul>';

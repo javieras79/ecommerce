@@ -1,4 +1,4 @@
-<?phpinclude("cabecera.php");include("menu.php");?><!--Seccion de contenido donde se incluye las categorias desde php-->	<?phpif(isset($_SESSION['usr'])){       if(isset($_GET["editar"])){     $id=$_GET["id"];     $nombre_categoria=$_GET["categoria"];     $activo=$_GET["activo"];     echo '<form class="form-horizontal" action="toolsCategories.php?editarCategoria=SI&id='.$id.'" method="POST" enctype="multipart/form-data">';
+<?phpinclude("cabecera.php");include("menu.php");?><!--Seccion de contenido donde se incluye las categorias desde php-->	<?phpif(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){       if(isset($_GET["editar"])){     $id=$_GET["id"];     $nombre_categoria=$_GET["categoria"];     $activo=$_GET["activo"];     echo '<form class="form-horizontal" action="toolsCategories.php?editarCategoria=SI&id='.$id.'" method="POST" enctype="multipart/form-data">';
    }else{
           echo '<form class="form-horizontal" action="toolsCategories.php?addCategoria=SI" method="POST" enctype="multipart/form-data">';     $activo=0;   }?>       
 <div class="span12">

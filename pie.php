@@ -27,11 +27,5 @@ Pie de la página
         <span>Copyright &copy; 2015<br> Javieras Tienda Online </span>
     </div>
 </div>
-<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing-1.3.min.js"></script>
-<script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script src="js/shop.js"></script>
 </body>
 </html>
