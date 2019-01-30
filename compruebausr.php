@@ -10,6 +10,7 @@ $sql->execute();
 
     while($res = $sql->fetch()){    
         $usuario = $res["nick"];
+        $id_usr = $res["id_usuario"];
         $id_rol = $res["id_rol"];
         $pwd_bd=$res["password"];
     }
@@ -20,6 +21,7 @@ $sql->execute();
         session_start();
         $_SESSION["logon"]= "SI";
         $_SESSION["usr"]= $usuario;
+        $_SESSION["id_usr"]=$id_usr;
         $_SESSION["rol"]= $id_rol;
         header ("Location: index.php");
     

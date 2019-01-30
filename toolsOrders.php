@@ -46,7 +46,7 @@ function showOrders($user){
         echo "</td>";
         echo "<td>";        
         $estado = $rst["estado"];
-        echo '<a href="listDetailOrder.php?id_pedido='.$id.'">'.$estado."</a>";        
+        echo '<a href="listDetailOrder.php?id_pedido='.$id.'&id_user='.$id_user.'">'.$estado."</a>";        
         echo "</td>";                
     }
     echo "</tr>";
@@ -111,7 +111,7 @@ function showOrdersAdm($user,$estado){
         echo "</td>";
         echo "<td>";
         $estado = $rst["estado"];
-        echo '<a href="listDetailOrder.php?id_pedido='.$id.'&vistaDetalle=SI" target="_blank"><span class="btn btn-mini">+</span></a>';
+        echo '<a href="listDetailOrder.php?id_pedido='.$id.'&id_user='.$id_user.'&vistaDetalle=SI" target="_blank"><span class="btn btn-mini">+</span></a>';
         echo "</td>"; 
         echo "<td>";
         $id_estado= $rst["id_estado"];
