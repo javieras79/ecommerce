@@ -54,7 +54,6 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
     <br>
 
 <?php
-
 if(isset($_GET['catsdisabled'])){       
     echo "<div class='control-group'>";
     echo "<label class='control-label' for='categoria'>Categoria <sup>*</sup></label>";

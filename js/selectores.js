@@ -26,7 +26,7 @@
 				 * el value de la lista padre eso es por defecto (cuando cargas la pagina )
          */
         $.ajax({
-            url: "toolsArticles.php",
+            url: "getCategories.php",
             method:'POST',
             data:{cat: $categoria_padre.val()},
             success:function (response) {
@@ -47,7 +47,7 @@
 		   //     $("#load").html('<p>Cargando ...</p>');
 					$categoria_hija.html('');//limpiamos la lista antes de la peticion ajax;
 		        $.ajax({//mandamos una peticion con post
-								url: "toolsArticles.php",//url que tienes que adaptarla a tu pagina
+								url: "getCategories.php",//url que tienes que adaptarla a tu pagina
 								method:'POST', //metodo post mucho mejor
 								data:{cat: $categoria_padre.val()},//valor de la categoria padre esta en <option value='id de categoria padre'>
 								success:function (response) {//la  respuesta del servidor
