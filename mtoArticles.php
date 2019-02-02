@@ -68,7 +68,7 @@ if(isset($_GET['catsdisabled'])){
     echo "<label class='control-label' for='subcat'>Subcategoria <sup>*</sup></label>";
     echo "<div class='controls'>";
     echo "<input type='hidden' id='subcat' placeholder='subcat' name='subcat' value='".$id_subcategoria."'>";
-    echo "<input type='text' disabled id='subcategoria' placeholder='subcat' name='subcategoria' value='".$nombre_subcategoria."' required>";
+    echo "<input type='text' disabled id='subcategoria' placeholder='subcategoria' name='subcategoria' value='".$nombre_subcategoria."' required>";
     echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></a>';
     echo "</div>";
     echo "</div>";
@@ -82,14 +82,14 @@ if(isset($_GET['catsdisabled'])){
     <?php foreach ($categorias as $categoria):
     echo "<option value='".$categoria->id_categoria."'>".$categoria->nombre_categoria."</option>";
     endforeach;?>
-    </select>
-    </div>
+    		</select>
+ 	   </div>
     </div>
     <div class='control-group' id='load'>
     <label class='control-label' for='subcategoria'>SubCategoria <sup>*</sup></label>
     <div class='controls'>
-    <select name='subcat'  class='form-control' id='subcat'>    
-    </select>
+  		  <select name='subcat' class='form-control' id='subcat'>    
+  		  </select>
     </div>
     </div>
 <?php }

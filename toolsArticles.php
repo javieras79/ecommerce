@@ -1,7 +1,7 @@
 <?php
 include_once("conectBBDD.php");
 require_once 'functions.php';
-
+echo "hola";
 //actualizar articulo
 if(isset($_GET["editArticle"])){
     $id=$_GET["id"];
@@ -91,8 +91,9 @@ function getSubcategoria($id)
 
 //Añade articulo
 if(isset($_GET["addArticle"])){
+    //echo "hola que tal";
     $id_categoria=$_POST["cat"];
-    $subcat=var_dump($_POST["id_subcategoria"]);
+    $subcat=$_POST["subcat"];
     $id_marca=$_POST["marca"];
     $nombre_articulo=$_POST["articulo"];
     $descripcion=$_POST["descripcion"];
