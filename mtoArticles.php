@@ -2,6 +2,7 @@
 include("cabecera.php");
 include("menu.php");
 include_once("conectBBDD.php");
+require_once 'functions.php';
 ?>
 <!--
 Seccion de contenido donde se incluye las categorias desde php
@@ -51,55 +52,49 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 <div class="span6">    
     <div class="well">       
     <br>
-    	<div class="control-group">
-    	<label class="control-label" for="categoria">Categoria <sup>*</sup></label>
-    		<div class="controls">
-    			<select name="categoria" required>
-    				<option value="<?php if(isset($_GET["editar"])){echo $id_categoria;}else{}?>"><?php if(isset($_GET["editar"])){echo $nombre_categoria;}else{} ?></option>
-            		<?php 
-            		if(isset($_GET["editar"])){
-            		      $id=$_GET["id"];
-            		      $con = conectar_bd();
-            		      $sql = $con->prepare('select distinct * from categorias where id_categoria !='.$id_categoria);
-            		}else{
-            		    $con = conectar_bd();
-            		    $sql = $con->prepare('select distinct * from categorias');
-            		}
-            		      $sql->execute();
-            		      while($datos = $sql->fetch()){
-            		      $nom_cat=$datos["nombre_categoria"];
-            		      $id_cat=$datos["id_categoria"];    		                      		          
-            		          echo "<option value='$id_cat'>$nom_cat</option>";
-            		      }            		
-            		?>
-  				</select>    			          
-   			</div>
-    	</div>
-    	<div class="control-group">
-    	<label class="control-label" for="subcategoria">SubCategoria <sup>*</sup></label>
-    		<div class="controls">
-    			<select name="subcategoria" required>
-    			    <option value="<?php if(isset($_GET["editar"])){echo $id_subcategoria;}else{}?>"><?php if(isset($_GET["editar"])){ echo $nombre_subcategoria;}else{} ?></option>
-            		<?php 
-            		if(isset($_GET["editar"])){
-            		      $id=$_GET["id"];
-            		      $con = conectar_bd();
-            		      $sql = $con->prepare('select distinct * from subcategorias where id_subcategoria !='.$id_subcategoria);
-            		}else{
-            		    $con = conectar_bd();
-            		    $sql = $con->prepare('select distinct * from subcategorias');
-            		}
-            		      $sql->execute();
-            		      while($datos = $sql->fetch()){
-            		      $nom_subcat=$datos["nombre_subcategoria"];
-            		      $id_subcat=$datos["id_subcategoria"];    		                      		          
-            		          echo "<option value='$id_subcat'>$nom_subcat</option>";
-            		      }
-            		?>
-  				</select>                        
-   			</div>
-    	</div>
-    	<div class="control-group">
+
+<?php
+
+if(isset($_GET['catsdisabled'])){       
+    echo "<div class='control-group'>";
+    echo "<label class='control-label' for='categoria'>Categoria <sup>*</sup></label>";
+    echo "<div class='controls'>";
+    echo "<input type='hidden' id='cat' placeholder='cat' name='cat' value='".$id_categoria."'>";
+    echo "<input type='text' disabled id='categoria' placeholder='categoria' name='categoria' value='".$nombre_categoria."' required>";
+    echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></a>';
+    echo "</div>";
+    echo "</div>";
+    echo "<div class='control-group'>";
+    echo "<label class='control-label' for='subcat'>Subcategoria <sup>*</sup></label>";
+    echo "<div class='controls'>";
+    echo "<input type='hidden' id='subcat' placeholder='subcat' name='subcat' value='".$id_subcategoria."'>";
+    echo "<input type='text' disabled id='subcategoria' placeholder='subcat' name='subcategoria' value='".$nombre_subcategoria."' required>";
+    echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></a>';
+    echo "</div>";
+    echo "</div>";
+}else{
+    $categorias = getCategorias_padres();?>
+    <div class='control-group'>
+    <label class='control-label' for='categoria'>Categoria <sup>*</sup></label>
+    	<div class="controls">
+    		<select class="form-control" name="cat" id="cat">
+    			<option value=''></option>
+    <?php foreach ($categorias as $categoria):
+    echo "<option value='".$categoria->id_categoria."'>".$categoria->nombre_categoria."</option>";
+    endforeach;?>
+    </select>
+    </div>
+    </div>
+    <div class='control-group' id='load'>
+    <label class='control-label' for='subcategoria'>SubCategoria <sup>*</sup></label>
+    <div class='controls'>
+    <select name='subcat'  class='form-control' id='subcat'>    
+    </select>
+    </div>
+    </div>
+<?php }
+?>
+    <div class="control-group">
     	<label class="control-label" for="marca">Marca <sup>*</sup></label>
     		<div class="controls">
     			<select name="marca" required>

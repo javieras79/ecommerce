@@ -1,11 +1,12 @@
 <?php
 include_once("conectBBDD.php");
+require_once 'functions.php';
 
 //actualizar articulo
 if(isset($_GET["editArticle"])){
     $id=$_GET["id"];
-    $id_categoria=$_POST["categoria"];
-    $id_subcategoria=$_POST["subcategoria"];
+    $id_categoria=$_POST["cat"];
+    $id_subcategoria=$_POST["subcat"];
     $id_marca=$_POST["marca"];
     $nombre_articulo=$_POST["articulo"];
     $descripcion=$_POST["descripcion"];
@@ -46,11 +47,52 @@ if(isset($_GET["editArticle"])){
     $sql->execute();
     header("Location: listArticles.php?actualiza='ok'"); 
 }
+/*
+//Actualiza subcategorias
+if(isset($_POST['id_categoria'])){
+    $idsub=(int)$_POST['id_categoria'];
+    $con=conectar_bd();
+    $sql=$con->prepare('select id_subcategoria,nombre_subcategoria from subcategorias where id_subcategoria='.$idsub);
+    $sub_array=array();
+    while($rst=$sql->fetch(PDO::FETCH_OBJ)){
+        $sub_array=$rst;
+    }
+    echo json_encode($sub_array);
+}
+*/
+
+if(isset($_POST['cat']))//comprobamos si exite el id
+{
+    $id = (int)$_POST['cat']; // hacemos un cating a intero porque nuestra base de datos sus id son enteros
+    $hijas = getSubcategoria($id); //llamamos a la funcion esa que devuelve los hijos de cada categoria padre
+    
+    echo json_encode($hijas);//convertimos el array a un json
+    
+    exit();//salimos de aqui;
+}
+
+/**
+ * funcion para devolver todos los hijos de una categoria padre
+ * @param $id int identificador de la categoria padre
+ * @return array lista de categorias hijas
+ */
+function getSubcategoria($id)
+{
+    $idsub=$id;
+    $con=conectar_bd();
+    $sql=$con->prepare('select id_subcategoria,nombre_subcategoria from subcategorias where id_categoria='.$idsub);
+    $sql->execute();
+    $sub_categorias = [];
+    while ($data = $sql->fetch(PDO::FETCH_OBJ)){
+        $sub_categorias[] = $data;
+    }
+    return $sub_categorias;
+}
 
 //Añade articulo
 if(isset($_GET["addArticle"])){
-    $id_categoria=$_POST["categoria"];
-    $id_subcategoria=$_POST["subcategoria"];
+    $id_categoria=$_POST["cat"];
+    $subcat=var_dump($_POST["id_subcategoria"]);
     $id_marca=$_POST["marca"];
     $nombre_articulo=$_POST["articulo"];
     $descripcion=$_POST["descripcion"];
@@ -85,7 +127,7 @@ if(isset($_GET["addArticle"])){
     $sql=$con->prepare('Insert into articulos (id_categoria,id_subcategoria,id_marca,nombre_articulo,descripcion,precio,iva,activo,tablon,usr_modif,fecha_modif,imagen) VALUES (:id_categoria,:id_subcategoria,:id_marca,:nombre_articulo,:descripcion,:precio,:iva,:activo,:tablon,:usuario,:fecha,:imagen);');
     
     $sql->bindParam(':id_categoria',$id_categoria,PDO::PARAM_INT);
-    $sql->bindParam(':id_subcategoria',$id_subcategoria,PDO::PARAM_INT);
+    $sql->bindParam(':id_subcategoria',$subcat,PDO::PARAM_INT);
     $sql->bindParam(':id_marca',$id_marca,PDO::PARAM_INT);
     $sql->bindParam(':nombre_articulo',$nombre_articulo,PDO::PARAM_STR);
     $sql->bindParam(':descripcion',$descripcion,PDO::PARAM_STR);
@@ -296,7 +338,7 @@ function mtoArticles(){
         echo "</td>";
         
         echo "<td><center>";
-        echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
+        echo '<a href="mtoArticles.php?editar=SI&catsdisabled=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
         echo '<a href="toolsArticles.php?remArticle=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";        
         echo "</tr>";
