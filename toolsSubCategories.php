@@ -13,9 +13,9 @@ if(isset($_GET["editarSubCategoria"])){
         $activo=0;
     }
     $con = conectar_bd();
-    $sql = $con->prepare('UPDATE subcategorias set id_categoria="'.$idcat.'",nombre_subcategoria="'.$nombre_subcategoria.'",activo="'.$activo.'" where id_subcategoria='.$idsubcat);
+    $sql = $con->prepare('UPDATE subcategorias set id_categoria='.$idcat.',nombre_subcategoria="'.$nombre_subcategoria.'",activo="'.$activo.'" where id_subcategoria='.$idsubcat);
     $sql->execute();
-    header("Location: listSubCategories.php");
+    header("Location: listSubCategories.php?editConfirm=OK");
 }
 
 //Añadir Subcategoria
@@ -29,12 +29,12 @@ if(isset($_GET["addSubCategoria"])){
         $activo=0;
     }
     $con = conectar_bd();
-    $sql = $con->prepare('Insert into subcategorias (id_categoria,nombre_subcategoria,activo) VALUES (:id_categoria,:nombre_categoria,:activo);');
+    $sql = $con->prepare('Insert into subcategorias (id_categoria,nombre_subcategoria,activo) VALUES (:id_categoria,:nombre_subcategoria,:activo);');
     $sql->bindParam(':id_categoria',$idcat,PDO::PARAM_INT);
-    $sql->bindParam(':nombre_categoria',$nombre_categoria,PDO::PARAM_STR);
+    $sql->bindParam(':nombre_subcategoria',$nombre_subcategoria,PDO::PARAM_STR);
     $sql->bindParam(':activo',$activo,PDO::PARAM_INT);
     $sql->execute();
-    header("Location: listSubCategories.php");
+    header("Location: listSubCategories.php?addConfirm=OK");
 }
 
 //Borrar Subcategoria
@@ -44,7 +44,7 @@ if(isset($_GET["delSubCategoria"])){
     $con = conectar_bd();    
     $sql = $con->prepare("delete from subcategorias where id_subcategoria=".$idsubcat);
     $sql->execute();
-        header("Location: listSubCategories.php");
+        header("Location: listSubCategories.php?delConfirm=OK");
     }
 
 //funcionar que carga tabla de Subcategorias pero del menú de mantenimiento perfil con rol 2
@@ -109,16 +109,24 @@ function mtoSubCategories(){
         echo "</td>";
         echo "<td><center>";
         echo '<a href="mtoSubCategories.php?editar=SI&id='.$idsubcat.'&idcat='.$idcat.'&subcategoria='.$nombre_subcategoria.'&activo='.$activo.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
-        echo '<a href="toolsSubCategories.php?delCategoria=SI&id='.$idsubcat.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo '<a href="toolsSubCategories.php?delSubCategoria=SI&id='.$idsubcat.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";
         echo "</tr>";
         
     }
     
     echo "</table>";
-    //Muestra mensaje error al no poder borrar categoria
-    if(isset($_GET["sendError"])){
-        echo "<p style='color:red;'>La categoria no puede ser borrada ya que tiene asociada alguna subcategoria</p>";
+    //Muestra mensaje subcategoria borrada con exito
+    if(isset($_GET["delConfirm"])){
+        echo "<p style='color:green;'>La Subcategoria ha sido borrada con exito</p>";
+    }
+    //Muestra mensaje subcategoria añadida con exito
+    if(isset($_GET["addConfirm"])){
+        echo "<p style='color:green;'>La Subcategoria ha sido dada de alta con exito</p>";
+    }
+    //Muestra mensaje subcategoria añadida con exito
+    if(isset($_GET["editConfirm"])){
+        echo "<p style='color:green;'>La Subcategoria ha sido modificada con exito</p>";
     }
     echo '</div>';
     echo '</div>';

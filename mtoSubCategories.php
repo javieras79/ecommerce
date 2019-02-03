@@ -39,7 +39,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
     	<label class="control-label" for="categoria">Categoria Principal<sup>*</sup></label>
     		<div class="controls">
 		
-    		<select name="categoria" id="id_categoria" required>
+    		<select name="categoria" id="categoria" required>
     				<option value="<?php if(isset($_GET["editar"])&& $idcat!=""){echo $id_categoria;}else{}?>"><?php if(isset($_GET["editar"]) && $idcat!=""){echo $nombre_categoria;}else{} ?></option>
             		<?php 
             		if(isset($_GET["editar"]) && $idcat!=""){
@@ -82,7 +82,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
     	 <div class="control-group">
                 <div class="controls">
                     <a href="listSubCategories.php" class="shopBtn btn-large">Volver</a>
-                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn">                
+                    <input type="submit" name="submitsubCategoria" value="Guardar" class="exclusive shopBtn">                
                 </div>                
             </div>        
 	</div>

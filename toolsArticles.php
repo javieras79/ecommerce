@@ -5,8 +5,14 @@ require_once 'functions.php';
 //actualizar articulo
 if(isset($_GET["editArticle"])){
     $id=$_GET["id"];
-    $id_categoria=$_POST["cat"];
-    $id_subcategoria=$_POST["subcat"];
+    if(isset($_POST["categ"]) && isset($_POST["subcateg"])){
+        $id_categoria=$_POST["categ"];
+        $id_subcategoria=$_POST["subcateg"];
+    }
+    if(isset($_POST["cat"]) && isset($_POST["subcat"])){
+        $id_categoria=$_POST["cat"];
+        $id_subcategoria=$_POST["subcat"];
+    }
     $id_marca=$_POST["marca"];
     $nombre_articulo=$_POST["articulo"];
     $descripcion=$_POST["descripcion"];

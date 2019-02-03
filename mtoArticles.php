@@ -58,7 +58,7 @@ if(isset($_GET['catsdisabled'])){
     echo "<div class='control-group'>";
     echo "<label class='control-label' for='categoria'>Categoria <sup>*</sup></label>";
     echo "<div class='controls'>";
-    //echo "<input type='hidden' id='cat' placeholder='cat' name='cat' value='".$id_categoria."'>";
+    echo "<input type='hidden' id='categ' placeholder='categ' name='categ' value='".$id_categoria."'>";
     echo "<input type='text' disabled id='categoria' placeholder='categoria' name='categoria' value='".$nombre_categoria."' required>";
     echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></a>';
     echo "</div>";
@@ -66,7 +66,7 @@ if(isset($_GET['catsdisabled'])){
     echo "<div class='control-group'>";
     echo "<label class='control-label' for='subcat'>Subcategoria <sup>*</sup></label>";
     echo "<div class='controls'>";
-    //echo "<input type='hidden' id='subcat' placeholder='subcat' name='subcat' value='".$id_subcategoria."'>";
+    echo "<input type='hidden' id='subcateg' placeholder='subcateg' name='subcateg' value='".$id_subcategoria."'>";
     echo "<input type='text' disabled id='subcategoria' placeholder='subcategoria' name='subcategoria' value='".$nombre_subcategoria."' required>";
     echo '<a href="mtoArticles.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></a>';
     echo "</div>";
@@ -76,7 +76,7 @@ if(isset($_GET['catsdisabled'])){
     <div class='control-group'>
     <label class='control-label' for='categoria'>Categoria <sup>*</sup></label>
     	<div class="controls">
-    		<select class="form-control" name="cat" id="cat">
+    		<select class="form-control" name="cat" id="cat" required>
     			<option value=''></option>
     <?php foreach ($categorias as $categoria):
     echo "<option value='".$categoria->id_categoria."'>".$categoria->nombre_categoria."</option>";
@@ -87,7 +87,7 @@ if(isset($_GET['catsdisabled'])){
     <div class='control-group' id='load'>
     <label class='control-label' for='subcategoria'>SubCategoria <sup>*</sup></label>
     <div class='controls'>
-  		  <select name='subcat' class='form-control' id='subcat'>    
+  		  <select name='subcat' class='form-control' id='subcat' required>    
   		  </select>
     </div>
     </div>
