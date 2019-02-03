@@ -18,5 +18,6 @@ include_once("toolsCategories.php");
         </ul>
         
     </div>
-    <div class="well well-small" ><a href="#"><img src="img/paypal.jpg" alt="payment method paypal"></a></div>
+    <div class="well well-small" ><a href="#"><img src="img/paypal.jpg" alt="payment method paypal"></a>
+    </div>
 </div>

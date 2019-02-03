@@ -78,10 +78,10 @@ function showcategories(){
                 echo "<ul>";
                 $controlUL=false;
             }
-            echo '<li><a href="showArticles.php?id_cat='.$id_cat.'&id_scat='.$id_scat.'">';
-            echo $nombre_subcategoria."</a></li>";
+                      echo '<li><a href="showArticles.php?id_cat='.$id_cat.'&id_scat='.$id_scat.'">';
+                      echo $nombre_subcategoria."</a></li>";
         }else{
-            $controlUL=true;
+            $controlUL=false;
             echo "</ul>";
             echo "</li>";
             echo '<li class="active has-sub"><a href="showArticles.php?id_cat='.$id_cat.'">';

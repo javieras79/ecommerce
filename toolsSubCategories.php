@@ -41,11 +41,19 @@ if(isset($_GET["addSubCategoria"])){
 if(isset($_GET["delSubCategoria"])){
     
     $idsubcat=$_GET["id"];
-    $con = conectar_bd();    
-    $sql = $con->prepare("delete from subcategorias where id_subcategoria=".$idsubcat);
-    $sql->execute();
-        header("Location: listSubCategories.php?delConfirm=OK");
+    try{            
+        $con = conectar_bd();          
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = $con->prepare("delete from subcategorias where id_subcategoria=:idsubcat");
+        $rows=$sql->execute(array(':idsubcat'=>$idsubcat));
+        
+        if($rows > 0){
+            header("Location: listSubCategories.php?delConfirm=OK");
+        }
+    }catch(PDOException $e){
+            header("Location: listSubCategories.php?delFail=OK");
     }
+}
 
 //funcionar que carga tabla de Subcategorias pero del menú de mantenimiento perfil con rol 2
 function mtoSubCategories(){
@@ -119,6 +127,10 @@ function mtoSubCategories(){
     //Muestra mensaje subcategoria borrada con exito
     if(isset($_GET["delConfirm"])){
         echo "<p style='color:green;'>La Subcategoria ha sido borrada con exito</p>";
+    }
+    //Muestra error de borrado en subcategoria 
+    if(isset($_GET["delFail"])){
+        echo "<p style='color:green;'>La Subcategoria no ha sido borrada. Tiene articulos asociados.</p>";
     }
     //Muestra mensaje subcategoria añadida con exito
     if(isset($_GET["addConfirm"])){
