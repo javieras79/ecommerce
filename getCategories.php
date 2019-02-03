@@ -1,4 +1,5 @@
 <?php
+include_once("conectBBDD.php");
 if(isset($_POST['cat']))//comprobamos si exite el id
 {
     $id = (int)$_POST['cat']; // hacemos un cating a intero porque nuestra base de datos sus id son enteros
@@ -8,8 +9,6 @@ if(isset($_POST['cat']))//comprobamos si exite el id
     
     exit();//salimos de aqui;
 }
-
-
 /**
  * funcion para devolver todos los hijos de una categoria padre
  * @param $id int identificador de la categoria padre
@@ -27,5 +26,4 @@ function getSubcategoria($id)
     }
     return $sub_categorias;
 }
-
 ?>
