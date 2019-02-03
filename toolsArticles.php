@@ -140,17 +140,25 @@ if(isset($_GET["remArticle"])){
 }
 
 //muestra en el cuerpo la lista de articulos de la categoria seleccionada
-function articuloslista($cat,$scat,$desplazamiento){
-    
+function articuloslista($cat,$scat,$desplazamiento,$num_filas){
+
     $con = conectar_bd();    
+    $con1 = conectar_bd();  
     $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
-                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1 limit 0,'.$desplazamiento.';');
-    $sql->execute();  
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1 limit '.$desplazamiento.','.$num_filas.';');
+    $sql->execute();
     $reg=$sql->rowCount();
+    //consultar total de registros según filtro
+    $sql1 = $con1->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
+                            INNER JOIN categorias c ON a.id_categoria = c.id_categoria
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1;');
+    $sql1->execute();
+    $total_registros=$sql1->rowCount();
+
     $count=0;
     $count2=3;
-    
+    //$pags=$reg/$desplazamiento;
 
     if($reg==0){
         echo "<div class='row-fluid'>";
@@ -180,12 +188,30 @@ function articuloslista($cat,$scat,$desplazamiento){
         echo "<p><strong>".$rst['precio']."</strong></p>";        
         echo '<h4><a class="shopBtn" href="toolsCart.php?id_articulo='.$rst['id_articulo'].'&cantidad=1" title="add to cart"> Add to cart </a></h4>';
         echo "<br class='clr'>";
+
         echo "</div>";
         echo "</div>";
         echo "</li>";
 
         $count++;
+    }    
+    
+    echo "<div class='span11'>";
+    echo "<div class='well well-small'>";
+    if ($desplazamiento > 0) {
+        $prev = $desplazamiento - $num_filas;
+        $url = $_SERVER["PHP_SELF"] . "?num_filas=$num_filas&desplazamiento=$prev&id_cat=$cat&id_scat=$scat";
+        echo "<a href='$url' class='shopBtn'>Pagina anterior</a>  ";
     }
+    if ($total_registros > ($desplazamiento + $num_filas)) {
+        $prox = $desplazamiento + $num_filas;
+        $url = $_SERVER["PHP_SELF"] . "?num_filas=$num_filas&desplazamiento=$prox&id_cat=$cat&id_scat=$scat";
+        echo "<a href='$url' class='shopBtn'> Proxima pagina</a>";
+    }
+    echo "</div>";
+    echo "</div>";
+  //  echo "<A HREF='".$_SERVER['HTTP_REFERER']."' class='shopBtn'>Pagina anterior</A>";
+    
 }
 
 //funcionar que carga tabla de articulos pero del menú de mantenimiento perfil con rol 2

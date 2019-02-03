@@ -25,7 +25,7 @@ Menú de navegación
                                     echo'<li><a href="listArticles.php">Articulos</a></li>';
                                     echo'<li><a href="listCategories.php">Categorias</a></li>';
                                     echo'<li><a href="listSubCategories.php">SubCategorias</a></li>';
-                                    echo'<li><a href="gMarcas.php">Marcas</a></li>';
+                                    echo'<li><a href="listMarcas.php">Marcas</a></li>';
                                     echo'<li><a href="listOrders.php">Pedidos Clientes</a></li>';
                                     echo'<li class="divider"></li>';
                                         if($_SESSION["rol"]==3){
