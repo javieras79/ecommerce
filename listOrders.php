@@ -24,7 +24,7 @@ include_once("toolsOrders.php");
 		    $sql->execute();
 		    echo '<form class="form-horizontal" action="listOrders.php?filtraEstado=SI" method="POST" enctype="multipart/form-data">';
 		    echo '<div class="span12">';
-		    echo '<h3>Gestion de pedidos </h3>';
+		    echo '<h3>Gestión de pedidos </h3>';
 		    echo '<hr class="soft">';		    
 		    echo '<div class="table-responsive">';
 		    echo '<table class="table table-condensed">';
@@ -53,10 +53,14 @@ include_once("toolsOrders.php");
 		    if(isset($_GET['filtraEstado'])){		        
 		        $user=$_SESSION['usr'];
 		        $id_estado=$_POST['estado'];
-		        showOrdersAdm($user,$id_estado);
+		        if($id_estado!=""){
+		          showOrdersAdm($user,$id_estado);
+		        }else{
+		          echo "<p style='color:orange;'>Debes filtrar por estado</p>";  
+		        }
 		    }		    
 		}else{
-		    echo "No tiene permisos para acceder a este menu";
+		    echo "No dispones de permisos para acceder a este menú.";
 		}
            
         ?>

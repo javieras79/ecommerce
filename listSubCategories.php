@@ -7,7 +7,7 @@ include_once("toolsSubCategories.php");
 		if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
             mtoSubCategories();
 		}else{
-		    echo "No dispone de permisos para acceder a este menu";
+		    echo "No dispone de permisos para acceder a este menú.";
 		}
         ?>
 <?php

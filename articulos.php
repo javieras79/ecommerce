@@ -10,7 +10,7 @@ Seccion de contenido donde se incluye las categorias desde php
 	<h3>Carrito Compra</h3>
 	<hr class="soft"/>
 	<div class="well">
-	    <h4>Listado Articulos</h4>
+	    <h4>Listado Artículos</h4>
 	    	<table>
 	    		<tr>
 	    			<td></td>

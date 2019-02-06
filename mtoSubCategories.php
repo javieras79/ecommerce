@@ -31,12 +31,12 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 ?>       
 <div class="span12">
 
-    <h3> Mantenimiento de SubCategorias</h3>
+    <h3> Mantenimiento de SubCategorías</h3>
     <hr class="soft"/>
     <div class="well">       
     <br>
     <div class="control-group">
-    	<label class="control-label" for="categoria">Categoria Principal<sup>*</sup></label>
+    	<label class="control-label" for="categoria">Categoría Principal<sup>*</sup></label>
     		<div class="controls">
 		
     		<select name="categoria" id="categoria" required>
@@ -62,13 +62,13 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="subcategoria">SubCategoria <sup>*</sup></label>
+    	<label class="control-label" for="subcategoria">SubCategoría <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="subcategoria" placeholder="subcategoria" name="subcategoria" value="<?php if(isset($_GET["editar"])){echo $nombre_subcategoria;}else{}?>" required>                      
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="baja">Estado SubCategoria <sup>*</sup></label>
+    	<label class="control-label" for="baja">Estado SubCategoría <sup>*</sup></label>
     		<div class="controls">
     		<?php 
     		  if($activo==0){
@@ -90,7 +90,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 </form>
 <?php 
 }else{
-    echo "No dispone de permisos para acceder a este men�.";
+    echo "No dispone de permisos para acceder a este menú.";
 }
 ?>
 <?php

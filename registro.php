@@ -14,12 +14,12 @@ contenido formulario registro
 -->
 
 <div class="span9">
-<?php if(isset($_GET["cuenta"])){echo "<h3>Edicion cuenta</h3>";}else{echo "<h3> Registro de Usuario</h3>";}?>
+<?php if(isset($_GET["cuenta"])){echo "<h3>Edici√≥n cuenta</h3>";}else{echo "<h3> Registro de Usuario</h3>";}?>
 <hr class="soft"/>
 <div class="well">
 
 <?php
-//esta variable viene del men˙ de navegaciÛn 
+//esta variable viene del menÔøΩ de navegaciÔøΩn 
     if(isset($_GET["cuenta"])){
         echo'<form class="form-horizontal" action="editUser.php?edit=SI" method="POST" onsubmit="return validarAlta();">';
     }else{

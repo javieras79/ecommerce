@@ -18,13 +18,13 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
             echo '<h3> Detalle de Pedido</h3>';
             echo '<hr class="soft">';
             echo '<div class="well">';
-            echo "<p size=15><strong>Numero Pedido: ".$id."</strong>";
+            echo "<p size=15><strong>Número Pedido: ".$id."</strong>";
             echo '<hr class="soft">';            
             echo '<div class="table-responsive">';
             echo '<table class="table table-condensed">';
             echo '<tr class="success">';
             echo "<td align='justify'><strong>";
-            echo "Id Articulo";
+            echo "Id Artículo";
             echo "</strong></td>";
             echo "<td align='justify'><strong>";
             echo "Cantidad";
@@ -86,7 +86,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
 		}            
 ?>
 <?php }else{
-        echo "No dispone de permisos para acceder a este menu.";
+        echo "No dispone de permisos para acceder a este menú.";
 }?>
 <?php
     include("pie.php");

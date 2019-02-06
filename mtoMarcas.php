@@ -55,7 +55,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 </form>
 <?php 
 }else{
-    echo "No dispone de permisos para acceder a este menú.";
+    echo "No dispone de permisos para acceder a este menÃº.";
 }
 ?>
 <?php

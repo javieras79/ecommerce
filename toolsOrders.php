@@ -59,7 +59,7 @@ function showOrders($user){
 
 //muestra en el cuerpo la lista de pedidos con rol 1 para usuario
 function showOrdersAdm($user,$estado){
-    
+
     $id_user=selUser($user);
     $con = conectar_bd();     
     $sql = $con->prepare('select p.id_pedido,p.FechaPedido,e.estado,u.nick,e.id_estado from pedido as p

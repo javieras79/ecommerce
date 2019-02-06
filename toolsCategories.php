@@ -17,7 +17,7 @@ if(isset($_GET["editarCategoria"])){
     header("Location: listCategories.php");     
 }
 
-//A�adir categoria
+//A�adir categoria
 if(isset($_GET["addCategoria"])){
         
     $nombre_categoria=$_POST["categoria"];
@@ -93,11 +93,11 @@ function showcategories(){
         }
     }
 }
-//funcionar que carga tabla de categorias pero del men� de mantenimiento perfil con rol 2
+//funcionar que carga tabla de categorias pero del men� de mantenimiento perfil con rol 2
 function mtoCategories(){
     
     echo '<div class="span12">';
-    echo '<h3> Mantenimiento de Categorias</h3>';
+    echo '<h3> Mantenimiento de Categorías</h3>';
     echo '<hr class="soft">';
     echo '<div class="well">';
     echo '<a class="shopBtn" href="mtoCategories.php">Nueva Categoria</a>';
@@ -106,16 +106,16 @@ function mtoCategories(){
     echo '<table class="table table-condensed">';
     echo '<tr class="success">';
     echo "<td><strong>";
-    echo "Id Categoria";
+    echo "Id Categoría";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Nombre Categoria";
+    echo "Nombre Categoría";
     echo "</strong></td>";
     echo "<td><center><strong>";
     echo "Activado";
     echo "</strong></center></td>";
     echo "<td><center><strong>";
-    echo "Accion";
+    echo "Acción";
     echo "</strong></center></td>";    
     echo "</tr>";
     
@@ -156,7 +156,7 @@ function mtoCategories(){
     echo "</table>";
     //Muestra mensaje error al no poder borrar categoria
     if(isset($_GET["sendError"])){     
-        echo "<p style='color:red;'>La categoria no puede ser borrada ya que tiene asociada alguna subcategoria</p>";
+        echo "<p style='color:red;'>La categoría no puede ser borrada ya que tiene asociada alguna subcategoría</p>";
      }
     echo '</div>';
     echo '</div>';

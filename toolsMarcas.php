@@ -17,7 +17,7 @@ if(isset($_GET["editarMarca"])){
     header("Location: listMarcas.php");
 }
 
-//Añadir categoria
+//Aï¿½adir categoria
 if(isset($_GET["addMarca"])){
     
     $nombre_marca=$_POST["marca"];
@@ -52,7 +52,7 @@ if(isset($_GET["delMarca"])){
 }
 
 
-//funcionar que carga tabla de categorias pero del menú de mantenimiento perfil con rol 2
+//funcionar que carga tabla de categorias pero del menï¿½ de mantenimiento perfil con rol 2
 function mtoMarcas(){
     
     echo '<div class="span12">';
@@ -74,7 +74,7 @@ function mtoMarcas(){
     echo "Activado";
     echo "</strong></center></td>";
     echo "<td><center><strong>";
-    echo "Accion";
+    echo "AcciÃ³n";
     echo "</strong></center></td>";
     echo "</tr>";
     

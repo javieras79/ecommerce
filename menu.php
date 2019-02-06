@@ -1,5 +1,5 @@
 <!--
-Menú de navegación
+Menï¿½ de navegaciï¿½n
 -->
 <div class="navbar">
     <div class="navbar-inner">
@@ -22,9 +22,9 @@ Menú de navegación
                                     echo'<li class="dropdown">';
                                     echo'<a href="#" data-toggle="dropdown" class="dropdown-toggle">Mantenimiento <b class="caret"></b></a>';
                                     echo'<ul class="dropdown-menu">';
-                                    echo'<li><a href="listArticles.php">Articulos</a></li>';
-                                    echo'<li><a href="listCategories.php">Categorias</a></li>';
-                                    echo'<li><a href="listSubCategories.php">SubCategorias</a></li>';
+                                    echo'<li><a href="listArticles.php">ArtÃ­culos</a></li>';
+                                    echo'<li><a href="listCategories.php">CategorÃ­as</a></li>';
+                                    echo'<li><a href="listSubCategories.php">SubCategorÃ­as</a></li>';
                                     echo'<li><a href="listMarcas.php">Marcas</a></li>';
                                     echo'<li><a href="listOrders.php">Pedidos Clientes</a></li>';
                                     echo'<li class="divider"></li>';
@@ -40,13 +40,13 @@ Menú de navegación
                                     echo'<ul class="dropdown-menu">';
                                     echo'<li><a href="registro.php?cuenta=SI">Mi Cuenta</a></li>';
                                     echo'<li><a href="listOrders.php">Pedidos Abiertos</a></li>';
-                                    echo'<li><a href="listOrders.php?historico=si">Historico Pedidos</a></li>';
+                                    echo'<li><a href="listOrders.php?historico=si">HistÃ³rico Pedidos</a></li>';
                                     echo'</ul>';
                                     echo'</li>';
                                 }
                             }
                     }else{
-                        echo'<li class=""><a href="registro.php">Registrarme</a></li>';
+                        echo'<li class=""><a href="registro.php">RegÃ­strarme</a></li>';
                     }
                     ?>
                 </ul>

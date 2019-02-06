@@ -18,7 +18,7 @@ if(isset($_GET["editarSubCategoria"])){
     header("Location: listSubCategories.php?editConfirm=OK");
 }
 
-//A�adir Subcategoria
+//A�adir Subcategoria
 if(isset($_GET["addSubCategoria"])){
     
     $nombre_subcategoria=$_POST["subcategoria"];
@@ -55,11 +55,11 @@ if(isset($_GET["delSubCategoria"])){
     }
 }
 
-//funcionar que carga tabla de Subcategorias pero del men� de mantenimiento perfil con rol 2
+//funcionar que carga tabla de Subcategorias pero del men� de mantenimiento perfil con rol 2
 function mtoSubCategories(){
     
     echo '<div class="span12">';
-    echo '<h3> Mantenimiento de SubCategorias</h3>';
+    echo '<h3> Mantenimiento de SubCategorías</h3>';
     echo '<hr class="soft">';
     echo '<div class="well">';
     echo '<a class="shopBtn" href="mtoSubCategories.php">Nueva SubCategoria</a>';
@@ -68,19 +68,19 @@ function mtoSubCategories(){
     echo '<table class="table table-condensed">';
     echo '<tr class="success">';
     echo "<td><strong>";
-    echo "Categoria Asociada";
+    echo "Categoría Asociada";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Id SubCategoria";
+    echo "Id SubCategoría";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Nombre SubCategoria";
+    echo "Nombre SubCategoría";
     echo "</strong></td>";
     echo "<td><center><strong>";
     echo "Activado";
     echo "</strong></center></td>";
     echo "<td><center><strong>";
-    echo "Accion";
+    echo "Acción";
     echo "</strong></center></td>";
     echo "</tr>";
     
@@ -126,19 +126,19 @@ function mtoSubCategories(){
     echo "</table>";
     //Muestra mensaje subcategoria borrada con exito
     if(isset($_GET["delConfirm"])){
-        echo "<p style='color:green;'>La Subcategoria ha sido borrada con exito</p>";
+        echo "<p style='color:green;'>La Subcategoría ha sido borrada con éxito</p>";
     }
     //Muestra error de borrado en subcategoria 
     if(isset($_GET["delFail"])){
-        echo "<p style='color:green;'>La Subcategoria no ha sido borrada. Tiene articulos asociados.</p>";
+        echo "<p style='color:green;'>La Subcategoría no ha sido borrada. Tiene artículos asociados.</p>";
     }
-    //Muestra mensaje subcategoria a�adida con exito
+    //Muestra mensaje subcategoria a�adida con exito
     if(isset($_GET["addConfirm"])){
-        echo "<p style='color:green;'>La Subcategoria ha sido dada de alta con exito</p>";
+        echo "<p style='color:green;'>La Subcategoría ha sido dada de alta con éxito</p>";
     }
-    //Muestra mensaje subcategoria a�adida con exito
+    //Muestra mensaje subcategoria a�adida con exito
     if(isset($_GET["editConfirm"])){
-        echo "<p style='color:green;'>La Subcategoria ha sido modificada con exito</p>";
+        echo "<p style='color:green;'>La Subcategoría ha sido modificada con éxito</p>";
     }
     echo '</div>';
     echo '</div>';

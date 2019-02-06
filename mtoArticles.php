@@ -46,7 +46,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
    }
 ?>  
 <div class="span12">     
-<h3> Mantenimiento de Articulos</h3>
+<h3> Mantenimiento de Artículos</h3>
     <hr class="soft"/>
 </div>
 <div class="span6">    
@@ -56,7 +56,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 <?php
 if(isset($_GET['catsdisabled'])){       
     echo "<div class='control-group'>";
-    echo "<label class='control-label' for='categoria'>Categoria <sup>*</sup></label>";
+    echo "<label class='control-label' for='categoria'>Categor�a <sup>*</sup></label>";
     echo "<div class='controls'>";
     echo "<input type='hidden' id='categ' placeholder='categ' name='categ' value='".$id_categoria."'>";
     echo "<input type='text' disabled id='categoria' placeholder='categoria' name='categoria' value='".$nombre_categoria."' required>";
@@ -64,7 +64,7 @@ if(isset($_GET['catsdisabled'])){
     echo "</div>";
     echo "</div>";
     echo "<div class='control-group'>";
-    echo "<label class='control-label' for='subcat'>Subcategoria <sup>*</sup></label>";
+    echo "<label class='control-label' for='subcat'>Subcategor�a <sup>*</sup></label>";
     echo "<div class='controls'>";
     echo "<input type='hidden' id='subcateg' placeholder='subcateg' name='subcateg' value='".$id_subcategoria."'>";
     echo "<input type='text' disabled id='subcategoria' placeholder='subcategoria' name='subcategoria' value='".$nombre_subcategoria."' required>";
@@ -74,7 +74,7 @@ if(isset($_GET['catsdisabled'])){
 }else{
     $categorias = getCategorias_padres();?>
     <div class='control-group'>
-    <label class='control-label' for='categoria'>Categoria <sup>*</sup></label>
+    <label class='control-label' for='categoria'>Categoría <sup>*</sup></label>
     	<div class="controls">
     		<select class="form-control" name="cat" id="cat" required>
     			<option value=''></option>
@@ -85,7 +85,7 @@ if(isset($_GET['catsdisabled'])){
  	   </div>
     </div>
     <div class='control-group' id='load'>
-    <label class='control-label' for='subcategoria'>SubCategoria <sup>*</sup></label>
+    <label class='control-label' for='subcategoria'>SubCategoría <sup>*</sup></label>
     <div class='controls'>
   		  <select name='subcat' class='form-control' id='subcat' required>    
   		  </select>
@@ -118,13 +118,13 @@ if(isset($_GET['catsdisabled'])){
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="articulo">Nombre Articulo <sup>*</sup></label>
+    	<label class="control-label" for="articulo">Nombre Artículo <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="articulo" placeholder="articulo" name="articulo" value="<?php if(isset($_GET["editar"])){echo $nombre_articulo;}else{}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="descripcion">Descripcion <sup>*</sup></label>
+    	<label class="control-label" for="descripcion">Descripción <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="descripcion" placeholder="descripcion" name="descripcion" value="<?php if(isset($_GET["editar"])){echo $descripcion;}else{}?>" required>                   
    			</div>
@@ -142,7 +142,7 @@ if(isset($_GET['catsdisabled'])){
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="activo">Estado Articulo <sup>*</sup></label>
+    	<label class="control-label" for="activo">Estado Artículo <sup>*</sup></label>
     		<div class="controls">
     		<?php 
     		  if($activo==0){
@@ -154,7 +154,7 @@ if(isset($_GET['catsdisabled'])){
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="tablon">Mostrar Tablon <sup>*</sup></label>
+    	<label class="control-label" for="tablon">Mostrar Tablón <sup>*</sup></label>
     		<div class="controls">
     		<?php 
     		  if($tablon==0){
@@ -187,7 +187,7 @@ if(isset($_GET['catsdisabled'])){
     	 	<label for="imagen">Imagen <sup>*</sup>
     				<input type="file" id="imagen" placeholder="imagen" name="imagen" value="">
     				<br> 
-    				<span>*Para la correcta visualizaci�n el tama�o de la imagen debe ser de 800*600 pixeles</span>   				
+    				<span>*Para la correcta visualización el tamaño de la imagen debe ser de 800*600 pixeles</span>   				
     		</label>        
     		<?php if(isset($_GET["editar"])){echo "<img src='./img/articulos/".$imagen."'>";}else{}?>              				
    		 </div>
@@ -208,7 +208,7 @@ if(isset($_GET['catsdisabled'])){
 
 <?php 
 }else{
-    echo "No tiene permisos para consultar este men�.";
+    echo "No tiene permisos para consultar este menú.";
 }
 ?>
 <?php

@@ -1,7 +1,7 @@
 <?php
 include_once("conectBBDD.php");
 
-    //funcionar que carga tabla de articulos pero del menú de mantenimiento perfil con rol 3
+    //funcionar que carga tabla de articulos pero del menï¿½ de mantenimiento perfil con rol 3
     function mtoUsers(){
         
         echo '<div class="span13">';
@@ -29,16 +29,16 @@ include_once("conectBBDD.php");
         echo "Email";
         echo "</strong></td>";
         echo "<td><strong>";
-        echo "Direccion";
+        echo "DirecciÃ³n";
         echo "</strong></td>";
         echo "<td><strong>";
         echo "Provincia";
         echo "</strong></td>";
         echo "<td><strong>";
-        echo "Poblacion";
+        echo "PoblaciÃ³n";
         echo "</strong></td>";
         echo "<td><strong>";
-        echo "Telefono";
+        echo "TelÃ©fono";
         echo "</strong></td>";   
         echo "<td><strong>";
         echo "Activo";
@@ -118,17 +118,17 @@ include_once("conectBBDD.php");
         
         echo "</table>";
         
-        //mensaje articulo añadido
+        //mensaje articulo aï¿½adido
         if(isset($_GET['alta'])){
-            echo "<p style='color:green;'>El usuario ha sido agregado con éxito.</p>";
+            echo "<p style='color:green;'>El usuario ha sido agregado con Ã‰xito.</p>";
         }
         //mensaje articulo borrado
         if(isset($_GET['borra'])){
-            echo "<p style='color:green;'>El usuario ha sido borrado con éxito.</p>";
+            echo "<p style='color:green;'>El usuario ha sido borrado con Ã‰xito.</p>";
         }
         //mensaje articulo borrado
         if(isset($_GET['actualiza'])){
-            echo "<p style='color:green;'>El usuario ha sido modificado con éxito.</p>";
+            echo "<p style='color:green;'>El usuario ha sido modificado con Ã‰xito.</p>";
         }
         echo '</div>';
         echo '</div>';
@@ -163,7 +163,7 @@ include_once("conectBBDD.php");
         header("Location: listUsers.php?actualiza='ok'"); 
     }
     
-    //Añade usuario
+    //Aï¿½ade usuario
     if(isset($_GET['addUser'])){
         
         $nick=$_POST['nick'];

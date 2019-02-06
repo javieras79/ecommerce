@@ -75,7 +75,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="direccion">Direccion <sup>*</sup></label>
+    	<label class="control-label" for="direccion">Dirección <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="direccion" placeholder="direccion" name="direccion" value="<?php if(isset($_GET["editar"])){echo $direccion;}else{}?>">                   
    			</div>
@@ -87,13 +87,13 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="poblacion">Poblacion <sup>*</sup></label>
+    	<label class="control-label" for="poblacion">Población <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="poblacion" placeholder="poblacion" name="poblacion" value="<?php if(isset($_GET["editar"])){echo $poblacion;}else{}?>">                   
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="telefono">Telefono <sup>*</sup></label>
+    	<label class="control-label" for="telefono">Teléfono <sup>*</sup></label>
     		<div class="controls">
     			<input type="text" id="telefono" placeholder="telefono" name="telefono" value="<?php if(isset($_GET["editar"])){echo $telefono;}else{}?>">                   
    			</div>
@@ -132,7 +132,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
 </form>
 <?php 
     }else{
-    echo "No dispone de permisos para acceder a este menu.";    
+    echo "No dispone de permisos para acceder a este menú.";    
 }
 ?>
 <?php

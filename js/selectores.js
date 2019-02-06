@@ -1,22 +1,4 @@
-/*$("#id_subcategoria").change(function() {
-  $.ajax({
-    url: 'toolsArticles.php',
-    method:"POST",
-    data:{id:this.val()},
-    success: function(res) {
 
-      var resultado = jason.parse(res);
-      $.each(resultado, function(i,v) {
-    	var html="option value="+v.id_subcategoria+">"+v.nombre_subcategoria+"</option>";
-  		id.append(html);    
-      });
-    },
-    error: function() {
-      console.log("No se ha podido obtener la información");
-    }
-  });
-});
-*/
 		$(document).ready(()=>{
 		    let $categoria_padre = $("#cat");//ese es el id de las categorias padres
 		    let $categoria_hija = $("#subcat");//ese es el id de las categorias hijas

@@ -22,7 +22,10 @@ if(isset($_GET["editArticle"])){
     //actualiza imagen
     if($_FILES["imagen"]["tmp_name"]){
         $old_img=selImage($id);
+        if($old_img!="sin_resultados.jpg")
+        {
         unlink("./img/articulos/".$old_img);
+        }
         $temp = $_FILES["imagen"]["tmp_name"];
         $nom_img=$_FILES["imagen"]["name"];
         $file=getimagesize($temp);
@@ -53,21 +56,8 @@ if(isset($_GET["editArticle"])){
     $sql->execute();
     header("Location: listArticles.php?actualiza='ok'"); 
 }
-/*
-//Actualiza subcategorias
-if(isset($_POST['id_categoria'])){
-    $idsub=(int)$_POST['id_categoria'];
-    $con=conectar_bd();
-    $sql=$con->prepare('select id_subcategoria,nombre_subcategoria from subcategorias where id_subcategoria='.$idsub);
-    $sub_array=array();
-    while($rst=$sql->fetch(PDO::FETCH_OBJ)){
-        $sub_array=$rst;
-    }
-    echo json_encode($sub_array);
-}
-*/
 
-//AÒade articulo
+//AÔøΩade articulo
 if(isset($_GET["addArticle"])){
     //echo "hola que tal";
     $id_categoria=$_POST["cat"];
@@ -149,7 +139,7 @@ function articuloslista($cat,$scat,$desplazamiento,$num_filas){
                             INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1 limit '.$desplazamiento.','.$num_filas.';');
     $sql->execute();
     $reg=$sql->rowCount();
-    //consultar total de registros seg˙n filtro
+    //consultar total de registros segÔøΩn filtro
     $sql1 = $con1->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
                             INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1;');
@@ -201,12 +191,12 @@ function articuloslista($cat,$scat,$desplazamiento,$num_filas){
     if ($desplazamiento > 0) {
         $prev = $desplazamiento - $num_filas;
         $url = $_SERVER["PHP_SELF"] . "?num_filas=$num_filas&desplazamiento=$prev&id_cat=$cat&id_scat=$scat";
-        echo "<a href='$url' class='shopBtn'>Pagina anterior</a>  ";
+        echo "<a href='$url' class='shopBtn'>P√°gina anterior</a>  ";
     }
     if ($total_registros > ($desplazamiento + $num_filas)) {
         $prox = $desplazamiento + $num_filas;
         $url = $_SERVER["PHP_SELF"] . "?num_filas=$num_filas&desplazamiento=$prox&id_cat=$cat&id_scat=$scat";
-        echo "<a href='$url' class='shopBtn'> Proxima pagina</a>";
+        echo "<a href='$url' class='shopBtn'> Pr√≥xima p√°gina</a>";
     }
     echo "</div>";
     echo "</div>";
@@ -214,11 +204,11 @@ function articuloslista($cat,$scat,$desplazamiento,$num_filas){
     
 }
 
-//funcionar que carga tabla de articulos pero del men˙ de mantenimiento perfil con rol 2
+//funcionar que carga tabla de articulos pero del menÔøΩ de mantenimiento perfil con rol 2
 function mtoArticles(){
     
     echo '<div class="span12">';
-    echo '<h3> Mantenimiento de Articulos</h3>';
+    echo '<h3> Mantenimiento de Art√≠culos</h3>';
     echo '<hr class="soft">';
     echo '<div class="well">';
     echo '<a class="shopBtn" href="mtoArticles.php">Nuevo Articulo</a>';
@@ -227,22 +217,22 @@ function mtoArticles(){
     echo '<table class="table table-condensed">';
     echo '<tr class="success">';
     echo "<td><strong>";
-    echo "Id Articulo";
+    echo "Id Art√≠culo";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Categoria";
+    echo "Categor√≠a";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "SubCategoria";
+    echo "SubCategor√≠a";
     echo "</strong></td>";
     echo "<td><strong>";
     echo "Marca";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Nombre Articulo";
+    echo "Nombre Art√≠culo";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Descripcion";
+    echo "Descripci√≥n";
     echo "</strong></td>";
     echo "<td><strong>";
     echo "Precio";
@@ -254,7 +244,7 @@ function mtoArticles(){
     echo "Activado";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Tablon";
+    echo "Tabl√≥n";
     echo "</strong></td>";
     echo "<td><strong>";
     echo "User";
@@ -263,7 +253,7 @@ function mtoArticles(){
     echo "Fecha alta";
     echo "</strong></td>";
     echo "<td><strong>";
-    echo "Accion";
+    echo "Acci√≥n";
     echo "</strong></td>";    
     echo "</tr>";
     
@@ -352,17 +342,17 @@ function mtoArticles(){
     
     echo "</table>";
 
-    //mensaje articulo aÒadido
+    //mensaje articulo aÔøΩadido
     if(isset($_GET['alta'])){
-        echo "<p style='color:green;'>El artÌculo ha sido agregado con Èxito.</p>";
+        echo "<p style='color:green;'>El art√≠culo ha sido agregado con √©xito.</p>";
     }    
     //mensaje articulo borrado
     if(isset($_GET['borra'])){
-        echo "<p style='color:green;'>El artÌculo ha sido borrado con Èxito.</p>";
+        echo "<p style='color:green;'>El art√≠culo ha sido borrado con √©xito.</p>";
     }
     //mensaje articulo borrado
     if(isset($_GET['actualiza'])){
-        echo "<p style='color:green;'>El artÌculo ha sido modificado con Èxito.</p>";
+        echo "<p style='color:green;'>El art√≠culo ha sido modificado con √©xito.</p>";
     }
     echo '</div>';
     echo '</div>';

@@ -2,10 +2,13 @@
 include("toolsCart.php");
 ?>
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<html lang="en">
+<head>    
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Tienda virtual" content="">
+    <meta name="Javier Aznar Serna" content="">
+    <meta http-equiv="Content-type" content="text/html" charset="UTF-8">    
     <title>Airsoft Javier Aznar</title>
     <meta name="description" content="Tienda online de Airsoft">     
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -21,23 +24,17 @@ include("toolsCart.php");
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-      <!-- Bootstrap CSS -->
-  
+      <!-- Bootstrap CSS -->  
     <link rel="shortcut icon" href="ico/favicon.ico">
-    <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
-    
+    <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>    
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.easing-1.3.min.js"></script>
 	<script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
 	<script src="js/shop.js"></script>
-	
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 	
 	
 </head>

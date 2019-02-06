@@ -22,11 +22,11 @@ session_start();
     <![endif]-->
     <link rel="shortcut icon" href="ico/favicon.ico">
     <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing-1.3.min.js"></script>
-<script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script src="js/shop.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing-1.3.min.js"></script>
+	<script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
+	<script src="js/shop.js"></script>
 </head>
 <body>
 
@@ -35,7 +35,7 @@ session_start();
 -->
 
 <!--
-Cabecera común a todas las paginas
+Cabecera comï¿½n a todas las paginas
 -->
 <div class="container">
     <div id="gototop"> </div>
