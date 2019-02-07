@@ -211,7 +211,7 @@ function articulosBusca($nom_art,$desplazamiento,$num_filas){
     $con1 = conectar_bd();
     $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
-                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where nombre_articulo like "%'.$nom_art.'%"');
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where nombre_articulo like "%'.$nom_art.'%" and a.activo=1 limit '.$desplazamiento.','.$num_filas.';');
     $sql->execute();
     $reg=$sql->rowCount();
     

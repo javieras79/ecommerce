@@ -50,8 +50,8 @@ if(isset($_GET['nom_art'])){
     }
     
     //echo '<a href="toolsCart.php?borrar='.$rst['id_articulo'].'"><span class="btn btn-mini">-</span></a>';
-    echo '<a href="showArticles.php?aumtfilas=aumt&nom_art='.$nom_art.'&num_filas='.$num_filas.'"><span class="btn btn-mini">+</span></a>';
-    echo '<a href="showArticles.php?rstfilas=rst&nom_art='.$nom_art.'&num_filas='.$num_filas.'"><span class="btn btn-mini">-</span></a>';
+    echo '<a href="getShowArticles.php?aumtfilas=aumt&nom_art='.$nom_art.'&num_filas='.$num_filas.'"><span class="btn btn-mini">+</span></a>';
+    echo '<a href="getShowArticles.php?rstfilas=rst&nom_art='.$nom_art.'&num_filas='.$num_filas.'"><span class="btn btn-mini">-</span></a>';
     echo "<hr class='soften'/>";
     echo "<div class='row-fluid'>";
     echo "<ul class='thumbnails'>";
