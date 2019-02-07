@@ -117,7 +117,7 @@ function mtoSubCategories(){
         echo "</td>";
         echo "<td><center>";
         echo '<a href="mtoSubCategories.php?editar=SI&id='.$idsubcat.'&idcat='.$idcat.'&subcategoria='.$nombre_subcategoria.'&activo='.$activo.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
-        echo '<a href="toolsSubCategories.php?delSubCategoria=SI&id='.$idsubcat.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo '<a href="toolsSubCategories.php?delSubCategoria=SI&id='.$idsubcat.'" onclick="return confirmar()"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";
         echo "</tr>";
         
@@ -130,7 +130,7 @@ function mtoSubCategories(){
     }
     //Muestra error de borrado en subcategoria 
     if(isset($_GET["delFail"])){
-        echo "<p style='color:green;'>La Subcategoría no ha sido borrada. Tiene artículos asociados.</p>";
+        echo "<p style='color:orange;'>La Subcategoría no ha sido borrada. Tiene artículos asociados.</p>";
     }
     //Muestra mensaje subcategoria a�adida con exito
     if(isset($_GET["addConfirm"])){

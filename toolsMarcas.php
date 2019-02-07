@@ -17,7 +17,7 @@ if(isset($_GET["editarMarca"])){
     header("Location: listMarcas.php");
 }
 
-//A�adir categoria
+//Añadir categoria
 if(isset($_GET["addMarca"])){
     
     $nombre_marca=$_POST["marca"];
@@ -106,7 +106,7 @@ function mtoMarcas(){
         echo "</td>";
         echo "<td><center>";
         echo '<a href="mtoMarcas.php?editar=SI&id='.$id.'&marca='.$nombre_marca.'&activo='.$activo.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
-        echo '<a href="toolsMarcas.php?delMarca=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo '<a href="toolsMarcas.php?delMarca=SI&id='.$id.'" onclick="return confirmar()"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";
         echo "</tr>";
         

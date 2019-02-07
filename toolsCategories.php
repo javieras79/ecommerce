@@ -39,20 +39,6 @@ if(isset($_GET["delCategoria"])){
     
     $id_cat=$_GET["id"];
     $con = conectar_bd();
-    try{    
-        $sql = $con->prepare("delete from categorias where id_categoria=".$id_cat);
-        $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql->execute();        
-        header("Location: listCategories.php");
-    }catch(PDOException $e){
-        header("Location: listCategories.php?sendError='SI'");
-    }
-}
-/*
-if(isset($_GET["delCategoria"])){
-    
-    $id_cat=$_GET["id"];
-    $con = conectar_bd();
     $sql = $con->prepare("select id_categoria from subcategorias where id_categoria=".$id_cat);
     $sql->execute();  
     $reg = $sql->fetchColumn(0);    
@@ -64,7 +50,7 @@ if(isset($_GET["delCategoria"])){
         header("Location: listCategories.php?sendError='SI'");
     }
 }
-*/
+
 //funcion que dibuja y muestra las categorias y subcategorias en la pagina principal
 function showcategories(){
     
