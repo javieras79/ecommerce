@@ -204,6 +204,83 @@ function articuloslista($cat,$scat,$desplazamiento,$num_filas){
     
 }
 
+//Funcion que busca articulos según nombre
+function articulosBusca($nom_art,$desplazamiento,$num_filas){
+    
+    $con = conectar_bd();
+    $con1 = conectar_bd();
+    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
+                            INNER JOIN categorias c ON a.id_categoria = c.id_categoria
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where nombre_articulo like "%'.$nom_art.'%"');
+    $sql->execute();
+    $reg=$sql->rowCount();
+    
+    //consultar total de registros seg�n filtro
+    $sql1 = $con1->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
+                            INNER JOIN categorias c ON a.id_categoria = c.id_categoria
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.activo=1;');
+    $sql1->execute();
+    $total_registros=$sql1->rowCount();
+    
+    $count=0;
+    $count2=3;
+    //$pags=$reg/$desplazamiento;
+    
+    if($reg==0){
+        echo "<div class='row-fluid'>";
+        echo "<ul class='thumbnails'>";
+        echo "<img src='img/sin_resultados.jpg' WIDTH=240 HEIGHT=310 BORDER=0 ALT='Un beb&eacute;' ALIGN='right'>";
+        echo "</ul>";
+        echo "</div>";
+    }
+    //va sumando de 3 en 3 con $count y $count2 para que las imagenes se listen en filas de 3 imagenes por fila
+    while($rst = $sql->fetch()){
+        if($count==$count2){
+            echo "</ul>";
+            echo "</div>";
+            echo "<div class='row-fluid'>";
+            echo "<ul class='thumbnails'>";
+            $count2=$count2+3;
+        }
+        echo "<li class='span4'>";
+        echo "<div class='thumbnail'>";
+        echo "<a href='product_details.html' class='overlay'></a>";
+        echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$rst['imagen'].'&nom_art='.$nom_art.'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
+        echo '<a href="articuloDetalle.php?imagen='.$rst['imagen'].'">';
+        echo "<img src='img/articulos/".$rst["imagen"]."' alt=''></a>";
+        echo "<div class='caption cntr'>";
+        echo "<p>".$rst['descripcion']."</p>";
+        echo "<p>".$rst['nombre_articulo']."</p>";
+        echo "<p><strong>".$rst['precio']."</strong></p>";
+        echo '<h4><a class="shopBtn" href="toolsCart.php?id_articulo='.$rst['id_articulo'].'&cantidad=1&nom_art='.$nom_art.'" title="add to cart"> Add to cart </a></h4>';
+        echo "<br class='clr'>";
+        
+        echo "</div>";
+        echo "</div>";
+        echo "</li>";
+        
+        $count++;
+    }
+    
+    echo "<div class='span11'>";
+    echo "<div class='well well-small'>";
+    if ($desplazamiento > 0) {
+        $prev = $desplazamiento - $num_filas;
+        $url = $_SERVER["PHP_SELF"] . "?num_filas=$num_filas&desplazamiento=$prev&busca_art=SI&nom_art=$nom_art";
+        echo "<a href='$url' class='shopBtn'>Página anterior</a>  ";
+    }
+    if ($total_registros > ($desplazamiento + $num_filas)) {
+        $prox = $desplazamiento + $num_filas;
+        $url = $_SERVER["PHP_SELF"] . "?num_filas=$num_filas&desplazamiento=$prox&busca_art=SI&nom_art=$nom_art";
+        echo "<a href='$url' class='shopBtn'> Próxima página</a>";
+    }
+    echo "</div>";
+    echo "</div>";
+    //  echo "<A HREF='".$_SERVER['HTTP_REFERER']."' class='shopBtn'>Pagina anterior</A>";
+    
+}
+
+
 //funcionar que carga tabla de articulos pero del men� de mantenimiento perfil con rol 2
 function mtoArticles(){
     

@@ -49,10 +49,20 @@ function saveUser($usr){
     $_SESSION["logon"]= "SI";
     $_SESSION["usr"]= $usr;
     
-    $sql=$con->prepare("select id_rol from usuarios where nick='".$usr."'");
+    $sql=$con->prepare("select * from usuarios where nick='".$usr."'");
     $sql->execute();
-    $id_rol=$sql->fetchColumn(0);
-    $_SESSION["rol"]= $id_rol;    
+    
+    while($res = $sql->fetch()){
+        $usuario = $res["nick"];
+        $id_usr = $res["id_usuario"];
+        $id_rol = $res["id_rol"];
+        $pwd_bd=$res["password"];
+    }
+    
+    $_SESSION["logon"]= "SI";
+    $_SESSION["usr"]= $usuario;
+    $_SESSION["id_usr"]=$id_usr;
+    $_SESSION["rol"]= $id_rol;
     header("location:index.php");
 
 }

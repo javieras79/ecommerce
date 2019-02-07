@@ -15,6 +15,7 @@ encoding/editUser.php=UTF-8
 encoding/formLogin.php=UTF-8
 encoding/functions.php=UTF-8
 encoding/getCategories.php=UTF-8
+encoding/getShowArticles.php=UTF-8
 encoding/getTablon.php=UTF-8
 encoding/index.html=UTF-8
 encoding/index.php=UTF-8

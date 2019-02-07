@@ -13,6 +13,7 @@ include("toolsCart.php");
     <meta name="description" content="Tienda online de Airsoft">     
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<!--<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">--> 
     <!-- <script src="js/jquery-3.3.1.js"></script> -->
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet"/>
@@ -47,7 +48,7 @@ include("toolsCart.php");
 loadCart();
 ?>	
 <!--
-Cabecera común a todas las paginas
+Cabecera comï¿½n a todas las paginas
 -->
 <div class="container">
     <div id="gototop"> </div>

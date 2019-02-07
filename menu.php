@@ -55,8 +55,8 @@ Men� de navegaci�n
                 <?php include("login.php");
                 //TODO Gestionar menu roles
                 ?>
-                <form action="#" class="navbar-search pull-right">
-                    <input type="text" placeholder="Search" class="search-query span2">
+                <form class="navbar-search pull-right" action="getShowArticles.php?busca_art=SI&nom_art" method="GET" enctype="multipart/form-data">
+                    <input type="text" placeholder="Search" class="search-query span2" name="nom_art"> <input type="submit" class="shopBtn btn-sm" value="Buscar">                    
                 </form>
             </div>
         </div>
