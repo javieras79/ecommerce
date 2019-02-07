@@ -1,3 +1,30 @@
+function confirmar()
+{
+	if(confirm("Estas seguro que quieres eliminar-lo ?"))
+	{
+		return true;
+	}
+	return false;
+}
+
+function confirmarEstadoPedido()
+{
+	if(confirm("Estas seguro que quieres cambiar el estado del pedido ?"))
+	{
+		return true;
+	}
+	return false;
+}
+
+function validarEdicion()
+{
+	if(confirm("Estas seguro que quieres modificar el articulo?"))
+	{
+		return true;
+	}
+	return false;
+}
+
 function validarAlta(){
 
     if(!validaNombre()){

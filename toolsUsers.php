@@ -46,10 +46,13 @@ include_once("conectBBDD.php");
         echo "<td><strong>";
         echo "Rol";
         echo "</strong></td>";
+        echo "<td><strong>";
+        echo "Acción";
+        echo "</strong></td>";
         echo "</tr>";
         
         $con = conectar_bd();
-        $sql = $con->prepare("select * from usuarios");
+        $sql = $con->prepare("select * from usuarios order by id_rol desc");
         $sql->execute();
         
         while($datos = $sql->fetch()){
@@ -110,7 +113,7 @@ include_once("conectBBDD.php");
                     
             echo "<td><center>";
             echo '<a href="mtoUsers.php?editar=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
-            echo '<a href="toolsUsers.php?remUser=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+            echo '<a href="toolsUsers.php?remUser=SI&id='.$id.'" onclick="return confirmar()"><span class="icon icon-trash" aria-hidden="true"></span></a>';
             echo "</center></td>";
             echo "</tr>";
             
@@ -129,6 +132,9 @@ include_once("conectBBDD.php");
         //mensaje articulo borrado
         if(isset($_GET['actualiza'])){
             echo "<p style='color:green;'>El usuario ha sido modificado con Éxito.</p>";
+        }
+        if(isset($_GET['borraNo'])){
+        echo "<p style='color:orange;'>El usuario tiene pedidos asociados. Primero deben borrarse.</p>";
         }
         echo '</div>';
         echo '</div>';
@@ -163,7 +169,7 @@ include_once("conectBBDD.php");
         header("Location: listUsers.php?actualiza='ok'"); 
     }
     
-    //A�ade usuario
+    //Añade usuario
     if(isset($_GET['addUser'])){
         
         $nick=$_POST['nick'];
@@ -205,9 +211,14 @@ include_once("conectBBDD.php");
     if(isset($_GET["remUser"])){
         $id=$_GET['id'];
         $con=conectar_bd();
-        $sql=$con->prepare('delete from usuarios where id_usuario='.$id);
-        $sql->execute();
-        header("Location: listUsers.php?borra='ok'");
+        try{                    
+            $sql=$con->prepare('delete from usuarios where id_usuario='.$id);
+            $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql->execute();
+            header("Location: listUsers.php?borra='ok'");
+        }catch (PDOException $e){
+            header("Location: listUsers.php?borraNo='ok'");             
+        }
     }    
 ?>
 

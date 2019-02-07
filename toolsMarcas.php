@@ -79,7 +79,7 @@ function mtoMarcas(){
     echo "</tr>";
     
     $con = conectar_bd();
-    $sql = $con->prepare('Select * from marcas;');
+    $sql = $con->prepare('Select * from marcas order by nombre_marca asc;');
     $sql->execute();
     
     while($datos = $sql->fetch()){

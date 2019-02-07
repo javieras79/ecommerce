@@ -56,7 +56,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
 <?php
 if(isset($_GET['catsdisabled'])){       
     echo "<div class='control-group'>";
-    echo "<label class='control-label' for='categoria'>Categor�a <sup>*</sup></label>";
+    echo "<label class='control-label' for='categoria'>Categoría <sup>*</sup></label>";
     echo "<div class='controls'>";
     echo "<input type='hidden' id='categ' placeholder='categ' name='categ' value='".$id_categoria."'>";
     echo "<input type='text' disabled id='categoria' placeholder='categoria' name='categoria' value='".$nombre_categoria."' required>";
@@ -64,7 +64,7 @@ if(isset($_GET['catsdisabled'])){
     echo "</div>";
     echo "</div>";
     echo "<div class='control-group'>";
-    echo "<label class='control-label' for='subcat'>Subcategor�a <sup>*</sup></label>";
+    echo "<label class='control-label' for='subcat'>Subcategoría <sup>*</sup></label>";
     echo "<div class='controls'>";
     echo "<input type='hidden' id='subcateg' placeholder='subcateg' name='subcateg' value='".$id_subcategoria."'>";
     echo "<input type='text' disabled id='subcategoria' placeholder='subcategoria' name='subcategoria' value='".$nombre_subcategoria."' required>";
@@ -187,7 +187,7 @@ if(isset($_GET['catsdisabled'])){
     	 	<label for="imagen">Imagen <sup>*</sup>
     				<input type="file" id="imagen" placeholder="imagen" name="imagen" value="">
     				<br> 
-    				<span>*Para la correcta visualización el tamaño de la imagen debe ser de 800*600 pixeles</span>   				
+    				<span class="badge badge-secondary">*Para la correcta visualización el tamaño de la imagen debe ser de 800*600 pixeles</span>   				
     		</label>        
     		<?php if(isset($_GET["editar"])){echo "<img src='./img/articulos/".$imagen."'>";}else{}?>              				
    		 </div>
@@ -198,7 +198,7 @@ if(isset($_GET['catsdisabled'])){
         	 <div class="control-group">
                 <div>
                     <center><a href="listArticles.php" class="shopBtn btn-large">Volver</a>
-                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn">
+                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn" onclick="return validarEdicion()">
                     </center>                
                 </div>                
             </div>  

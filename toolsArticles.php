@@ -57,7 +57,7 @@ if(isset($_GET["editArticle"])){
     header("Location: listArticles.php?actualiza='ok'"); 
 }
 
-//A�ade articulo
+//Añade articulo
 if(isset($_GET["addArticle"])){
     //echo "hola que tal";
     $id_categoria=$_POST["cat"];
@@ -122,11 +122,12 @@ function selImage($id_articulo){
 
 //Borra articulo
 if(isset($_GET["remArticle"])){
-    $id=$_GET['id'];
-    $con=conectar_bd();
-    $sql=$con->prepare('delete from articulos where id_articulo='.$id);
-    $sql->execute();
-    header("Location: listArticles.php?borra='ok'");
+    
+        $id=$_GET['id'];
+        $con=conectar_bd(); 
+        $sql=$con->prepare('delete from articulos where id_articulo='.$id);
+        $sql->execute();
+        header("Location: listArticles.php?borra='ok'");
 }
 
 //muestra en el cuerpo la lista de articulos de la categoria seleccionada
@@ -340,7 +341,7 @@ function mtoArticles(){
                           from articulos as a
                           left join categorias as c on a.id_categoria=c.id_categoria
                           left join marcas as m on a.id_marca=m.id_marca
-                          left join subcategorias as s on a.id_subcategoria=s.id_subcategoria");
+                          left join subcategorias as s on a.id_subcategoria=s.id_subcategoria order by c.nombre_categoria asc");
     $sql->execute();
     
     while($datos = $sql->fetch()){
@@ -411,7 +412,7 @@ function mtoArticles(){
         
         echo "<td><center>";
         echo '<a href="mtoArticles.php?editar=SI&catsdisabled=SI&id='.$id.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';
-        echo '<a href="toolsArticles.php?remArticle=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo '<a href="toolsArticles.php?remArticle=SI&id='.$id.'" onclick="return confirmar()"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";        
         echo "</tr>";
         
@@ -426,6 +427,10 @@ function mtoArticles(){
     //mensaje articulo borrado
     if(isset($_GET['borra'])){
         echo "<p style='color:green;'>El artículo ha sido borrado con éxito.</p>";
+    }
+    //mensaje articulo no borrado
+    if(isset($_GET['noborra'])){
+        echo "<p style='color:orange;'>El artículo tiende dependencias. Primero se han de eliminar.</p>";
     }
     //mensaje articulo borrado
     if(isset($_GET['actualiza'])){

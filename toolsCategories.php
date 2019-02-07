@@ -17,7 +17,7 @@ if(isset($_GET["editarCategoria"])){
     header("Location: listCategories.php");     
 }
 
-//A�adir categoria
+//Añadir categoria
 if(isset($_GET["addCategoria"])){
         
     $nombre_categoria=$_POST["categoria"];
@@ -39,18 +39,32 @@ if(isset($_GET["delCategoria"])){
     
     $id_cat=$_GET["id"];
     $con = conectar_bd();
+    try{    
+        $sql = $con->prepare("delete from categorias where id_categoria=".$id_cat);
+        $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql->execute();        
+        header("Location: listCategories.php");
+    }catch(PDOException $e){
+        header("Location: listCategories.php?sendError='SI'");
+    }
+}
+/*
+if(isset($_GET["delCategoria"])){
+    
+    $id_cat=$_GET["id"];
+    $con = conectar_bd();
     $sql = $con->prepare("select id_categoria from subcategorias where id_categoria=".$id_cat);
     $sql->execute();  
     $reg = $sql->fetchColumn(0);    
     if($reg==null){
     $sql = $con->prepare("delete from categorias where id_categoria=".$id_cat);    
     $sql->execute();
-    header("Location: listCategories.php");
+        header("Location: listCategories.php");
     }else{        
         header("Location: listCategories.php?sendError='SI'");
     }
 }
-
+*/
 //funcion que dibuja y muestra las categorias y subcategorias en la pagina principal
 function showcategories(){
     
@@ -120,7 +134,7 @@ function mtoCategories(){
     echo "</tr>";
     
     $con = conectar_bd();
-    $sql = $con->prepare('Select * from categorias;');
+    $sql = $con->prepare('Select * from categorias order by nombre_categoria asc;');
     $sql->execute();
     
     while($datos = $sql->fetch()){
@@ -147,7 +161,7 @@ function mtoCategories(){
         echo "</td>";
         echo "<td><center>";
         echo '<a href="mtoCategories.php?editar=SI&id='.$id.'&categoria='.$nombre_categoria.'&activo='.$activo.'"><span class="icon icon-edit" aria-hidden="true"></span> </a>';        
-        echo '<a href="toolsCategories.php?delCategoria=SI&id='.$id.'"><span class="icon icon-trash" aria-hidden="true"></span></a>';
+        echo '<a href="toolsCategories.php?delCategoria=SI&id='.$id.'" onclick="return confirmar()"><span class="icon icon-trash" aria-hidden="true"></span></a>';
         echo "</center></td>";      
         echo "</tr>";
         

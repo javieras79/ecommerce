@@ -58,7 +58,7 @@ function saveUser($usr){
         $id_rol = $res["id_rol"];
         $pwd_bd=$res["password"];
     }
-    
+    //aquí podría filtrar por activo y devolver a la pagina principal informando al usuario de que la cuenta será activada tan pronto confirme el link del correo de confirmación.
     $_SESSION["logon"]= "SI";
     $_SESSION["usr"]= $usuario;
     $_SESSION["id_usr"]=$id_usr;

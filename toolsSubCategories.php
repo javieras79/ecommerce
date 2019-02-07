@@ -68,13 +68,13 @@ function mtoSubCategories(){
     echo '<table class="table table-condensed">';
     echo '<tr class="success">';
     echo "<td><strong>";
-    echo "Categoría Asociada";
-    echo "</strong></td>";
-    echo "<td><strong>";
     echo "Id SubCategoría";
     echo "</strong></td>";
     echo "<td><strong>";
     echo "Nombre SubCategoría";
+    echo "</strong></td>";
+    echo "<td><strong>";
+    echo "Categoría Asociada";
     echo "</strong></td>";
     echo "<td><center><strong>";
     echo "Activado";
@@ -86,16 +86,12 @@ function mtoSubCategories(){
     
     $con = conectar_bd();
     $sql = $con->prepare('Select s.id_subcategoria,s.nombre_subcategoria,s.activo,c.id_categoria,c.nombre_categoria from subcategorias as s 
-                          LEFT JOIN categorias as c ON s.id_categoria=c.id_categoria;');
+                          LEFT JOIN categorias as c ON s.id_categoria=c.id_categoria order by s.nombre_subcategoria asc;');
     $sql->execute();
     
     while($datos = $sql->fetch()){
         
         echo "<tr>";
-        echo "<td>";
-        $idcat = $datos["id_categoria"];
-        echo $datos["nombre_categoria"];
-        echo "</td>";
         echo "<td>";
         $idsubcat = $datos["id_subcategoria"];
         echo $idsubcat;
@@ -103,6 +99,10 @@ function mtoSubCategories(){
         echo "<td>";
         $nombre_subcategoria = $datos["nombre_subcategoria"];
         echo $nombre_subcategoria;
+        echo "</td>";
+        echo "<td>";
+        $idcat = $datos["id_categoria"];
+        echo $datos["nombre_categoria"];
         echo "</td>";
         echo "<td>";
         echo '<div style="text-align: left">';

@@ -123,7 +123,7 @@ function showOrdersAdm($user,$estado){
         for($i=0;$i<count($state);$i++){
             $id_estado=$state[$i]['id_estado'];
             $estado=$state[$i]['estado'];
-            echo '<a href="listOrders.php?idestado='.$id_estado.'&idpedido='.$id.'&estado='.$estado.'&cambiaEstadoPedido=SI"><span class="btn btn-mini">'.$estado.'</span></a>';                       
+            echo '<a href="listOrders.php?idestado='.$id_estado.'&idpedido='.$id.'&estado='.$estado.'&cambiaEstadoPedido=SI"  onclick="return confirmarEstadoPedido()"><span class="btn btn-mini">'.$estado.'</span></a>';                       
         }                               
         echo "</td>";        
     }

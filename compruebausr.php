@@ -13,9 +13,10 @@ $sql->execute();
         $id_usr = $res["id_usuario"];
         $id_rol = $res["id_rol"];
         $pwd_bd=$res["password"];
+        $activo=$res["activo"];
     }
     
-    if ($usuario && password_verify($pwd, $pwd_bd)){    
+    if ($usuario && password_verify($pwd, $pwd_bd) && $activo){    
         //El usuario existe
 
         session_start();
