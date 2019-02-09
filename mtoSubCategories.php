@@ -40,7 +40,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
     		<div class="controls">
 		
     		<select name="categoria" id="categoria" required>
-    				<option value="<?php if(isset($_GET["editar"])&& $idcat!=""){echo $id_categoria;}else{}?>"><?php if(isset($_GET["editar"]) && $idcat!=""){echo $nombre_categoria;}else{} ?></option>
+    				<option value="<?php if(isset($_GET["editar"]) && $idcat!=""){echo $idcat;}else{}?>"><?php if(isset($_GET["editar"]) && $idcat!=""){echo $nombre_categoria;}else{} ?></option>
             		<?php 
             		if(isset($_GET["editar"]) && $idcat!=""){
             		    

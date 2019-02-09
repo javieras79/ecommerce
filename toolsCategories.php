@@ -55,12 +55,14 @@ if(isset($_GET["delCategoria"])){
 function showcategories(){
     
     $con = conectar_bd();
-    $sql = $con->prepare('Select id_categoria from categorias;');
+    $sql = $con->prepare('Select a.id_categoria from categorias a 
+                          INNER JOIN subcategorias s 
+                          ON a.id_categoria=s.id_categoria where a.activo=1 and s.activo=1 order by a.id_categoria asc;');
     $sql->execute();
     $controla_duplicados=$sql->fetchColumn(0);
     
     $sql = $con->prepare('Select a.nombre_categoria,a.id_categoria,s.nombre_subcategoria,s.id_subcategoria
-                          from categorias a INNER JOIN subcategorias s ON a.id_categoria = s.id_categoria order by a.id_categoria;');
+                          from categorias a INNER JOIN subcategorias s ON a.id_categoria = s.id_categoria where a.activo=1 and s.activo=1 order by a.id_categoria;');
     $sql->execute();
     
     $controlUL=true;
