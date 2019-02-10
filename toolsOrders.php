@@ -126,12 +126,12 @@ function showOrdersAdm($user,$estado){
         for($i=0;$i<count($state);$i++){
             $id_estado=$state[$i]['id_estado'];
             $estado=$state[$i]['estado'];
-            echo '<a href="listOrders.php?idestado='.$id_estado.'&idpedido='.$id.'&estado='.$estado.'&cambiaEstadoPedido=SI"  onclick="return confirmarEstadoPedido()"><span class="btn btn-mini">'.$estado.'</span></a>';                       
+            echo '<a href="listOrders.php?idestado='.$id_estado.'&idpedido='.$id.'&estado='.$estado.'&cambiaEstadoPedido=SI" onclick="return confirmarEstadoPedido()"><span class="btn btn-mini">'.$estado.'</span></a>';                       
         }                               
         echo "</td>";   
         echo "<td>";
         $estado = $rst["id_pedido"];
-        echo '<center><a href="toolsOrders.php?id_pedido='.$id.'&delOrder=SI onclick="return confirmarBorraOrder()"><span class="icon icon-trash" aria-hidden="true"></span></a></center>';
+        echo '<center><a href="toolsOrders.php?id_pedido='.$id.'&delOrder=SI" onclick="return confirmarBorraOrder()"><span class="icon icon-trash" aria-hidden="true"></span></a></center>';
         echo "</td>"; 
     }
     echo "</tr>";

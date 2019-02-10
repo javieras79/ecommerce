@@ -35,7 +35,7 @@ function validarArticuloEdicion()
 }
 
 function confirmarBorraOrder(){
-	if(confirm("Estas seguro que quieres borrar el Pedido? A continuación se borrarán todos los detalles de los mismos."))
+	if(confirm("Estas seguro que quieres borrar el Pedido? A continuación se borrarán todos sus detalles."))
 	{
 		return true;
 	}
