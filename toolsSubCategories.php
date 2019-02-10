@@ -86,7 +86,7 @@ function mtoSubCategories(){
     
     $con = conectar_bd();
     $sql = $con->prepare('Select s.id_subcategoria,s.nombre_subcategoria,s.activo,c.id_categoria,c.nombre_categoria from subcategorias as s 
-                          LEFT JOIN categorias as c ON s.id_categoria=c.id_categoria order by s.nombre_subcategoria asc;');
+                          LEFT JOIN categorias as c ON s.id_categoria=c.id_categoria order by c.nombre_categoria asc;');
     $sql->execute();
     
     while($datos = $sql->fetch()){

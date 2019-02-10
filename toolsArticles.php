@@ -49,12 +49,20 @@ if(isset($_GET["editArticle"])){
     }
     $usuario=$_POST["usuario"];
     $fecha=$_POST["fecha"];
+try{
     $con=conectar_bd();
     $sql=$con->prepare('update articulos set id_categoria="'.$id_categoria.'",id_subcategoria="'.$id_subcategoria.'",id_marca="'.$id_marca.'",
                         nombre_articulo="'.$nombre_articulo.'",descripcion="'.$descripcion.'",precio="'.$precio.'",iva="'.$iva.'",activo="'.$activo.'",
                         tablon="'.$tablon.'",usr_modif="'.$usuario.'",fecha_modif="'.$fecha.'",imagen="'.$nom_img.'" where id_articulo='.$id);
-    $sql->execute();
-    header("Location: listArticles.php?actualiza='ok'"); 
+    $rows=$sql->execute();
+    
+    if($rows > 0){
+        header("Location: listArticles.php?actualiza='ok'"); 
+    }
+}catch(PDOException $e){
+        header("Location: listArticles.php?noactualiza='ok'"); 
+}
+    
 }
 
 //Añade articulo
@@ -92,6 +100,7 @@ if(isset($_GET["addArticle"])){
     }
     $usuario=$_POST["usuario"];
     $fecha=$_POST["fecha"];
+try{
     $con=conectar_bd();
     $sql=$con->prepare('Insert into articulos (id_categoria,id_subcategoria,id_marca,nombre_articulo,descripcion,precio,iva,activo,tablon,usr_modif,fecha_modif,imagen) VALUES (:id_categoria,:id_subcategoria,:id_marca,:nombre_articulo,:descripcion,:precio,:iva,:activo,:tablon,:usuario,:fecha,:imagen);');
     
@@ -107,8 +116,14 @@ if(isset($_GET["addArticle"])){
     $sql->bindParam(':usuario',$usuario,PDO::PARAM_STR);
     $sql->bindParam(':fecha',$fecha,PDO::PARAM_STR);
     $sql->bindParam(':imagen',$nom_img,PDO::PARAM_STR);
-    $sql->execute();
-    header("Location: listArticles.php?alta='ok'");    
+    $rows=$sql->execute();
+    
+    if($rows > 0){
+        header("Location: listArticles.php?alta='ok'");    
+    }
+}catch(PDOException $e){
+        header("Location: listArticles.php?noalta='ok'");    
+}
 }  
 
 //Seleccion imagen antigua
@@ -124,10 +139,17 @@ function selImage($id_articulo){
 if(isset($_GET["remArticle"])){
     
         $id=$_GET['id'];
+  try{
         $con=conectar_bd(); 
-        $sql=$con->prepare('delete from articulos where id_articulo='.$id);
-        $sql->execute();
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql=$con->prepare('delete from articulos where id_articulo=:id');
+        $rows=$sql->execute(array(':id'=>$id));        
+        if($rows > 0){
         header("Location: listArticles.php?borra='ok'");
+        }
+     }catch(PDOException $e){
+         header("Location: listArticles.php?noborra='ok'");
+     }
 }
 
 //muestra en el cuerpo la lista de articulos de la categoria seleccionada
@@ -140,7 +162,7 @@ function articuloslista($cat,$scat,$desplazamiento,$num_filas){
                             INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1 limit '.$desplazamiento.','.$num_filas.';');
     $sql->execute();
     $reg=$sql->rowCount();
-    //consultar total de registros seg�n filtro
+    //consultar total de registros según filtro
     $sql1 = $con1->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca,c.id_categoria,c.nombre_categoria,s.id_subcategoria,s.nombre_subcategoria from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
                             INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.id_categoria='.$cat.' and a.id_subcategoria='.$scat.' and a.activo=1;');
@@ -170,12 +192,13 @@ function articuloslista($cat,$scat,$desplazamiento,$num_filas){
         echo "<li class='span4'>";
         echo "<div class='thumbnail'>";
         echo "<a href='product_details.html' class='overlay'></a>";
-        echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$rst['imagen'].'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
-        echo '<a href="articuloDetalle.php?imagen='.$rst['imagen'].'">';
+        echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$rst['imagen'].'&id='.$rst['id_articulo'].'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
+        echo '<a href="articuloDetalle.php?imagen='.$rst['imagen'].'&id='.$rst['id_articulo'].'">';
         echo "<img src='img/articulos/".$rst["imagen"]."' alt=''></a>";
         echo "<div class='caption cntr'>";
-        echo "<p>".$rst['descripcion']."</p>";
+        echo "<p>".$rst['nombre_marca']."</p>";
         echo "<p>".$rst['nombre_articulo']."</p>";
+        echo "<p>".$rst['descripcion']."</p>";        
         echo "<p><strong>".$rst['precio']."</strong></p>";        
         echo '<h4><a class="shopBtn" href="toolsCart.php?id_articulo='.$rst['id_articulo'].'&cantidad=1" title="add to cart"> Add to cart </a></h4>';
         echo "<br class='clr'>";
@@ -210,9 +233,10 @@ function articulosBusca($nom_art,$desplazamiento,$num_filas){
     
     $con = conectar_bd();
     $con1 = conectar_bd();
-    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
+    $sql = $con->prepare('select a.id_articulo,a.nombre_articulo,a.descripcion,a.precio,a.imagen,m.nombre_marca from articulos a INNER JOIN marcas m ON a.id_marca = m.id_marca
                             INNER JOIN categorias c ON a.id_categoria = c.id_categoria
-                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where nombre_articulo like "%'.$nom_art.'%" and a.activo=1 limit '.$desplazamiento.','.$num_filas.';');
+                            INNER JOIN subcategorias s ON a.id_subcategoria = s.id_subcategoria where a.nombre_articulo like "%'.$nom_art.'%" or c.nombre_categoria like "%'.$nom_art.'%"  
+                            or s.nombre_subcategoria like "%'.$nom_art.'%" or m.nombre_marca like "%'.$nom_art.'%" and a.activo=1 limit '.$desplazamiento.','.$num_filas.';');
     $sql->execute();
     $reg=$sql->rowCount();
     
@@ -246,12 +270,13 @@ function articulosBusca($nom_art,$desplazamiento,$num_filas){
         echo "<li class='span4'>";
         echo "<div class='thumbnail'>";
         echo "<a href='product_details.html' class='overlay'></a>";
-        echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$rst['imagen'].'&nom_art='.$nom_art.'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
-        echo '<a href="articuloDetalle.php?imagen='.$rst['imagen'].'">';
+        echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$rst['imagen'].'&id='.$rst['id_articulo'].'&nom_art='.$nom_art.'" title="quick view"><span class="icon-search"></span> QUICK VIEW</a>';
+        echo '<a href="articuloDetalle.php?imagen='.$rst['imagen'].'&id='.$rst['id_articulo'].'">';
         echo "<img src='img/articulos/".$rst["imagen"]."' alt=''></a>";
         echo "<div class='caption cntr'>";
-        echo "<p>".$rst['descripcion']."</p>";
+        echo "<p>".$rst['nombre_marca']."</p>";
         echo "<p>".$rst['nombre_articulo']."</p>";
+        echo "<p>".$rst['descripcion']."</p>";  
         echo "<p><strong>".$rst['precio']."</strong></p>";
         echo '<h4><a class="shopBtn" href="toolsCart.php?id_articulo='.$rst['id_articulo'].'&cantidad=1&nom_art='.$nom_art.'" title="add to cart"> Add to cart </a></h4>';
         echo "<br class='clr'>";
@@ -292,6 +317,30 @@ function mtoArticles(){
     echo '<a class="shopBtn" href="mtoArticles.php">Nuevo Articulo</a>';
     echo '<hr class="soft">';
     echo '<div class="table-responsive">';
+    //mensaje articulo añadido
+    if(isset($_GET['alta'])){
+        echo "<p style='color:green;'>El artículo ha sido agregado con éxito.</p>";
+    }
+    //mensaje articulo no añadido
+    if(isset($_GET['noalta'])){
+        echo "<p style='color:orange;'>El formato de alguno de los campos es erróneo. Usar decimal '.' para Precio e iva.</p>";
+    }
+    //mensaje articulo borrado
+    if(isset($_GET['borra'])){
+        echo "<p style='color:green;'>El artículo ha sido borrado con éxito.</p>";
+    }
+    //mensaje articulo no borrado
+    if(isset($_GET['noborra'])){
+        echo "<p style='color:orange;'>El artículo tiende pedidos asociados. Primero se han de eliminar.</p>";
+    }
+    //mensaje articulo borrado
+    if(isset($_GET['actualiza'])){
+        echo "<p style='color:green;'>El artículo ha sido modificado con éxito.</p>";
+    }
+    //mensaje articulo borrado
+    if(isset($_GET['noactualiza'])){
+        echo "<p style='color:orange;'>El artículo no ha sido modificado con éxito. Revisa los campos. Usar decimal '.' para Precio e iva.</p>";
+    }
     echo '<table class="table table-condensed">';
     echo '<tr class="success">';
     echo "<td><strong>";
@@ -420,22 +469,7 @@ function mtoArticles(){
     
     echo "</table>";
 
-    //mensaje articulo a�adido
-    if(isset($_GET['alta'])){
-        echo "<p style='color:green;'>El artículo ha sido agregado con éxito.</p>";
-    }    
-    //mensaje articulo borrado
-    if(isset($_GET['borra'])){
-        echo "<p style='color:green;'>El artículo ha sido borrado con éxito.</p>";
-    }
-    //mensaje articulo no borrado
-    if(isset($_GET['noborra'])){
-        echo "<p style='color:orange;'>El artículo tiende dependencias. Primero se han de eliminar.</p>";
-    }
-    //mensaje articulo borrado
-    if(isset($_GET['actualiza'])){
-        echo "<p style='color:green;'>El artículo ha sido modificado con éxito.</p>";
-    }
+
     echo '</div>';
     echo '</div>';
     echo '</div>';

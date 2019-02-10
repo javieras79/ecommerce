@@ -25,6 +25,51 @@ function validarEdicion()
 	return false;
 }
 
+function validarArticuloEdicion()
+{
+	if(confirm("Estas seguro que quieres modificar el articulo?"))
+	{
+		return true;
+	}
+	return false;
+}
+
+function confirmarBorraOrder(){
+	if(confirm("Estas seguro que quieres borrar el Pedido? A continuación se borrarán todos los detalles de los mismos."))
+	{
+		return true;
+	}
+	return false;
+}
+
+function validarArticulo()
+{
+	if(confirm("Estas seguro que quieres guardar el articulo?"))
+	{
+		return true;
+	}
+	return false;
+}
+
+function validarEdicionUsuario()
+{
+	if(confirm("Estas seguro que quieres modificar el usuario?"))
+	{
+		return true;
+	}
+	return false;
+}
+
+function nuevoUsuario()
+{
+	if(confirm("Estas seguro que quieres guardar el usuario?"))
+	{
+		return true;
+	}
+	return false;
+}
+
+
 function validarAlta(){
 
     if(!validaNombre()){

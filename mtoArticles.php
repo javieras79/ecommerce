@@ -43,6 +43,10 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 2 || $_SESSION['rol'] == 3){
      echo '<form class="form-horizontal" action="toolsArticles.php?addArticle=SI" method="POST" enctype="multipart/form-data">';
      $activo=0;
      $tablon=0;
+     $todayh = getdate(); //monday week begin reconvert
+     $d = $todayh['mday'];
+     $m = $todayh['mon'];
+     $y = $todayh['year'];
    }
 ?>  
 <div class="span12">     
@@ -168,13 +172,13 @@ if(isset($_GET['catsdisabled'])){
     	<div class="control-group">
     	<label class="control-label" for="usuario">Usuario <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="usuario" placeholder="usuario" name="usuario" value="<?php if(isset($_GET["editar"])){echo $usuario;}else{}?>" required>                   
+    			<input type="text" id="usuario" placeholder="usuario" name="usuario" readonly value="<?php if(isset($_GET["editar"])){echo $usuario;}else{echo $_SESSION["usr"];}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
     	<label class="control-label" for="fecha">Fecha <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="fecha" placeholder="fecha" name="fecha" value="<?php if(isset($_GET["editar"])){echo $fecha;}else{}?>">                   
+    			<input type="text" id="fecha" placeholder="fecha" name="fecha" readonly value="<?php if(isset($_GET["editar"])){echo $fecha;}else{echo $y."/".$m."/".$d;}?>">                   
    			</div>
     	</div>    	      
 	</div>
@@ -198,7 +202,11 @@ if(isset($_GET['catsdisabled'])){
         	 <div class="control-group">
                 <div>
                     <center><a href="listArticles.php" class="shopBtn btn-large">Volver</a>
-                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn" onclick="return validarEdicion()">
+                    <?php if(isset($_GET["editar"])){?>
+                    <input type="submit" name="submitCategoria" value="Modificar" class="exclusive shopBtn" onclick="return validarArticuloEdicion()">
+                    <?php }else{?>
+                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn" onclick="return validarArticulo()">
+                    <?php }?>
                     </center>                
                 </div>                
             </div>  

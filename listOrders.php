@@ -19,6 +19,14 @@ include_once("toolsOrders.php");
 		        $sql->execute();
 		        echo "<p style='color:green;'>El ID: ".$id_pedido." de pedido ha sido modificado a estado ".$nombre_estado."</p>";
 		    }
+		    //notifica borrado pedido
+		    if(isset($_GET['borra'])){
+		        echo "<p style='color:green;'>El pedido y sus detalles han sido borrados.</p>";
+		    }
+		    //notifica no borrado de pedido
+		    if(isset($_GET['borrano'])){
+		        echo "<p style='color:orange;'>El pedido y sus detalles no han sido borrados.</p>";
+		    }
 		    $con = conectar_bd();
 		    $sql = $con->prepare('select id_estado,estado from estadoPedido');
 		    $sql->execute();

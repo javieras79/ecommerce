@@ -73,13 +73,11 @@ New Products
 			<ul class="thumbnails">
 				<li class="span4">
 					<div class="thumbnail">
-						<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[1]->imagen.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[1]->imagen.'">';?>
+						<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[1]->imagen.'&id='.$tab_art[1]->id_articulo.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[1]->imagen.'&id='.$tab_art[1]->id_articulo.'">';?>
 						<img src="img/articulos/<?php echo $tab_art[1]->imagen;?>" alt=""></a>
 						<div class="caption cntr">
 							<p><?php echo $tab_art[1]->nombre_articulo;?></p>
-							<p>
-								<strong><?php echo $tab_art[1]->precio;?></strong>
-							</p>
+							<p><strong><?php echo $tab_art[1]->precio;?></strong></p>
 						<?php echo '<h4><a class="shopBtn" href="toolsCart.php?id_articulo='.$tab_art[1]->id_articulo.'&cantidad=1" title="Añadir carro"> Añadir</a></h4>';?>
                         <br class="clr">
 						</div>
@@ -87,7 +85,7 @@ New Products
 				</li>
 				<li class="span4">
 					<div class="thumbnail">
-						<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[2]->imagen.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[2]->imagen.'">';?>
+						<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[2]->imagen.'&id='.$tab_art[2]->id_articulo.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[2]->imagen.'&id='.$tab_art[2]->id_articulo.'">';?>
 						<img src="img/articulos/<?php echo $tab_art[2]->imagen;?>" alt=""></a>
 						<div class="caption cntr">
 							<p><?php echo $tab_art[2]->nombre_articulo;?></p>
@@ -101,7 +99,7 @@ New Products
 				</li>
 				<li class="span4">
 					<div class="thumbnail">
-					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[3]->imagen.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[3]->imagen.'">';?>
+					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[3]->imagen.'&id='.$tab_art[3]->id_articulo.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[3]->imagen.'&id='.$tab_art[3]->id_articulo.'">';?>
 						<img src="img/articulos/<?php echo $tab_art[3]->imagen;?>" alt=""></a>
 						<div class="caption cntr">
 							<p><?php echo $tab_art[3]->nombre_articulo;?></p>
@@ -117,7 +115,7 @@ New Products
 		<div class="row-fluid">
 				<li class="span4">
 					<div class="thumbnail">
-					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[7]->imagen.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[7]->imagen.'">';?>
+					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[7]->imagen.'&id='.$tab_art[7]->id_articulo.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[7]->imagen.'&id='.$tab_art[7]->id_articulo.'">';?>
 						<img src="img/articulos/<?php echo $tab_art[7]->imagen;?>" alt=""></a>
 						<div class="caption cntr">
 							<p><?php echo $tab_art[7]->nombre_articulo;?></p>
@@ -131,7 +129,7 @@ New Products
 				</li>
 				<li class="span4">
 					<div class="thumbnail">
-					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[8]->imagen.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[8]->imagen.'">';?>
+					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[8]->imagen.'&id='.$tab_art[8]->id_articulo.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[8]->imagen.'&id='.$tab_art[9]->id_articulo.'">';?>
 						<img src="img/articulos/<?php echo $tab_art[8]->imagen;?>" alt=""></a>
 						<div class="caption cntr">
 							<p><?php echo $tab_art[8]->nombre_articulo;?></p>
@@ -145,7 +143,7 @@ New Products
 				</li>
 				<li class="span4">
 					<div class="thumbnail">
-					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[9]->imagen.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[8]->imagen.'">';?>
+					<?php echo '<a class="zoomTool" href="articuloDetalle.php?imagen='.$tab_art[9]->imagen.'&id='.$tab_art[9]->id_articulo.'" title="add to cart"><span class="icon-search"></span> Click para ver</a> <a href="articuloDetalle.php?imagen='.$tab_art[8]->imagen.'&id='.$tab_art[9]->id_articulo.'">';?>
 						<img src="img/articulos/<?php echo $tab_art[9]->imagen;?>" alt=""></a>
 						<div class="caption cntr">
 							<p><?php echo $tab_art[9]->nombre_articulo;?></p>

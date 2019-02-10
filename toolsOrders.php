@@ -89,6 +89,9 @@ function showOrdersAdm($user,$estado){
     echo "<td><strong>";
     echo "Modificar Estado";
     echo "</strong></td>";
+    echo "<td><strong>";
+    echo "Borrar Pedido";
+    echo "</strong></td>";
     echo '<form class="form-horizontal" action="listOrders.php?cambiaEstadoPedido=SI" method="POST" enctype="multipart/form-data">';
     $controla_estado=true;
     $state = array();
@@ -125,7 +128,11 @@ function showOrdersAdm($user,$estado){
             $estado=$state[$i]['estado'];
             echo '<a href="listOrders.php?idestado='.$id_estado.'&idpedido='.$id.'&estado='.$estado.'&cambiaEstadoPedido=SI"  onclick="return confirmarEstadoPedido()"><span class="btn btn-mini">'.$estado.'</span></a>';                       
         }                               
-        echo "</td>";        
+        echo "</td>";   
+        echo "<td>";
+        $estado = $rst["id_pedido"];
+        echo '<center><a href="toolsOrders.php?id_pedido='.$id.'&delOrder=SI onclick="return confirmarBorraOrder()"><span class="icon icon-trash" aria-hidden="true"></span></a></center>';
+        echo "</td>"; 
     }
     echo "</tr>";
     echo "</table>";
@@ -133,6 +140,26 @@ function showOrdersAdm($user,$estado){
     echo "</table>";
     echo '</form>';
     
+}
+
+//Borra pedido y lineas
+if(isset($_GET['delOrder'])){
+    
+    $id=$_GET['id_pedido'];
+    try{
+        $con=conectar_bd();
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql=$con->prepare('delete from detallepedido where id_pedido='.$id);
+        $row1=$sql->execute();
+        $sql=$con->prepare('delete from pedido where id_pedido='.$id);
+        $row2=$sql->execute();
+        if($row1 > 0 && $row2 > 0){
+            header("Location: listOrders.php?borra=ok");
+        }
+    }catch(PDOException $e){
+            //echo $e;
+            header("Location: listOrders.php?borrano=ok");
+    }    
 }
 
 //recoge estados pedido

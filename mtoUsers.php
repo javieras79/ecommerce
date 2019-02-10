@@ -47,23 +47,23 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
     	<div class="control-group">
     	<label class="control-label" for="nick">Nick <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="nick" placeholder="nick" name="nick" value="<?php if(isset($_GET["editar"])){echo $nick;}else{}?>">                   
+    			<input type="text" id="nick" placeholder="nick" name="nick" value="<?php if(isset($_GET["editar"])){echo $nick;}else{}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
     	<label class="control-label" for="pwd">Password <sup>*</sup></label>
     		<div class="controls">
-    			<input type="password" id="pwd" placeholder="pwd" name="pwd" value="<?php if(isset($_GET["editar"])){echo $pwd;}else{}?>">                   
+    			<input type="password" id="pwd" placeholder="pwd" name="pwd" value="<?php if(isset($_GET["editar"])){echo $pwd;}else{}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
     	<label class="control-label" for="nombre">Nombre <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="nombre" placeholder="nombre" name="nombre" value="<?php if(isset($_GET["editar"])){echo $nombre;}else{}?>">                   
+    			<input type="text" id="nombre" placeholder="nombre" name="nombre" value="<?php if(isset($_GET["editar"])){echo $nombre;}else{}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="apellidos">Apellidos <sup>*</sup></label>
+    	<label class="control-label" for="apellidos">Apellidos <sup></sup></label>
     		<div class="controls">
     			<input type="text" id="apellidos" placeholder="apellidos" name="apellidos" value="<?php if(isset($_GET["editar"])){echo $apellidos;}else{}?>">                   
    			</div>
@@ -71,23 +71,23 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
     	<div class="control-group">
     	<label class="control-label" for="email">Email <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="email" placeholder="email" name="email" value="<?php if(isset($_GET["editar"])){echo $email;}else{}?>">                   
+    			<input type="text" id="email" placeholder="email" name="email" value="<?php if(isset($_GET["editar"])){echo $email;}else{}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="direccion">Dirección <sup>*</sup></label>
+    	<label class="control-label" for="direccion">Dirección <sup></sup></label>
     		<div class="controls">
     			<input type="text" id="direccion" placeholder="direccion" name="direccion" value="<?php if(isset($_GET["editar"])){echo $direccion;}else{}?>">                   
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="provincia">Provincia <sup>*</sup></label>
+    	<label class="control-label" for="provincia">Provincia <sup></sup></label>
     		<div class="controls">
     			<input type="text" id="provincia" placeholder="provincia" name="provincia" value="<?php if(isset($_GET["editar"])){echo $provincia;}else{}?>">                   
    			</div>
     	</div>
     	<div class="control-group">
-    	<label class="control-label" for="poblacion">Población <sup>*</sup></label>
+    	<label class="control-label" for="poblacion">Población <sup></sup></label>
     		<div class="controls">
     			<input type="text" id="poblacion" placeholder="poblacion" name="poblacion" value="<?php if(isset($_GET["editar"])){echo $poblacion;}else{}?>">                   
    			</div>
@@ -95,7 +95,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
     	<div class="control-group">
     	<label class="control-label" for="telefono">Teléfono <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="telefono" placeholder="telefono" name="telefono" value="<?php if(isset($_GET["editar"])){echo $telefono;}else{}?>">                   
+    			<input type="text" id="telefono" placeholder="telefono" name="telefono" value="<?php if(isset($_GET["editar"])){echo $telefono;}else{}?>" required>                   
    			</div>
     	</div>
     	<div class="control-group">
@@ -113,7 +113,7 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
     	<div class="control-group">
     	<label class="control-label" for="rol">Rol <sup>*</sup></label>
     		<div class="controls">
-    			<input type="text" id="rol" placeholder="rol" name="rol" value="<?php if(isset($_GET["editar"])){echo $rol;}else{}?>">                   
+    			<input type="text" id="rol" placeholder="rol" name="rol" value="<?php if(isset($_GET["editar"])){echo $rol;}else{}?>" required>                   
    			</div>
     	</div>
 	</div>
@@ -123,7 +123,11 @@ if(isset($_SESSION['usr']) && $_SESSION['rol'] == 3){
         	 <div class="control-group">
                 <div>
                     <center><a href="listUsers.php" class="shopBtn btn-large">Volver</a>
-                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn">
+                    <?php if(isset($_GET['editar'])){?>
+                    <input type="submit" name="submitCategoria" value="Modificar" class="exclusive shopBtn" onclick="return validarEdicionUsuario()">
+                    <?php }else{?>
+                    <input type="submit" name="submitCategoria" value="Guardar" class="exclusive shopBtn" onclick="return nuevoUsuario()">
+                    <?php }?>
                     </center>                
                 </div>                
             </div>  

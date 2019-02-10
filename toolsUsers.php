@@ -10,6 +10,21 @@ include_once("conectBBDD.php");
         echo '<div class="well">';
         echo '<a class="shopBtn" href="mtoUsers.php">Nuevo Usuario</a>';
         echo '<hr class="soft">';
+        //mensaje articulo a�adido
+        if(isset($_GET['alta'])){
+            echo "<p style='color:green;'>El usuario ha sido agregado con Éxito.</p>";
+        }
+        //mensaje articulo borrado
+        if(isset($_GET['borra'])){
+            echo "<p style='color:green;'>El usuario ha sido borrado con Éxito.</p>";
+        }
+        //mensaje articulo borrado
+        if(isset($_GET['actualiza'])){
+            echo "<p style='color:green;'>El usuario ha sido modificado con Éxito.</p>";
+        }
+        if(isset($_GET['borraNo'])){
+            echo "<p style='color:orange;'>El usuario tiene pedidos asociados. Primero deben borrarse.</p>";
+        }
         echo '<div class="table-responsive">';
         echo '<table class="table table-condensed">';
         echo '<tr class="success">';
@@ -121,21 +136,6 @@ include_once("conectBBDD.php");
         
         echo "</table>";
         
-        //mensaje articulo a�adido
-        if(isset($_GET['alta'])){
-            echo "<p style='color:green;'>El usuario ha sido agregado con Éxito.</p>";
-        }
-        //mensaje articulo borrado
-        if(isset($_GET['borra'])){
-            echo "<p style='color:green;'>El usuario ha sido borrado con Éxito.</p>";
-        }
-        //mensaje articulo borrado
-        if(isset($_GET['actualiza'])){
-            echo "<p style='color:green;'>El usuario ha sido modificado con Éxito.</p>";
-        }
-        if(isset($_GET['borraNo'])){
-        echo "<p style='color:orange;'>El usuario tiene pedidos asociados. Primero deben borrarse.</p>";
-        }
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -210,13 +210,17 @@ include_once("conectBBDD.php");
     //Borra Usuario
     if(isset($_GET["remUser"])){
         $id=$_GET['id'];
-        $con=conectar_bd();
-        try{                    
-            $sql=$con->prepare('delete from usuarios where id_usuario='.$id);
-            $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql->execute();
+        
+        try{
+            $con=conectar_bd();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql=$con->prepare('delete from usuarios where id_usuario='.$id);            
+            $rows=$sql->execute();
+            if($rows > 0){
             header("Location: listUsers.php?borra='ok'");
+            }
         }catch (PDOException $e){
+            //echo $e;
             header("Location: listUsers.php?borraNo='ok'");             
         }
     }    
